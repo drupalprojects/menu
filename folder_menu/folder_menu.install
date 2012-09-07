@@ -1,0 +1,88 @@
+<?php
+function folder_menu_schema()
+{
+    $schema['folder_menu'] = array(
+    
+    'description' => 'The table for Folder menu.', 
+    'fields' => array(
+      'fmid' => array(
+        'description' => 'The primary identifier for a folder menu.', 
+        'type' => 'serial', 
+        'unsigned' => TRUE, 
+        'not null' => TRUE,
+      ), 
+      'menu_parent' => array(
+        'description' => 'The current Menu Parent.', 
+        'type' => 'varchar', 
+        'length' => 32,
+        'not null' => TRUE, 
+        'default' => '',
+      ), 
+      'position' => array(
+        'description' => 'The Menu Position.', 
+        'type' => 'varchar', 
+        'length' => 32, 
+        'not null' => TRUE, 
+        'default' => '',
+      ), 
+      'distance_from_top' => array(
+        'description' => 'The Distance from top.', 
+        'type' => 'int', 
+        'length' => 20, 
+        'not null' => TRUE, 
+        'default' => '10',
+      ),
+	  'menu_font' => array(
+        'description' => 'The Menu Font.', 
+        'type' => 'varchar', 
+        'length' => 10, 
+        'not null' => TRUE, 
+        'default' => '',
+      ),
+	  'menu_background_color' => array(
+        'description' => 'The Menu Text Color.', 
+        'type' => 'varchar', 
+        'length' => 10, 
+        'not null' => TRUE, 
+        'default' => '',
+      ),
+	  'menu_hover_color' => array(
+        'description' => 'The Menu Hover Color.', 
+        'type' => 'varchar', 
+        'length' => 10, 
+        'not null' => TRUE, 
+        'default' => '',
+      ),
+	  'submenu_text_color' => array(
+        'description' => 'Submenu Text Color.', 
+        'type' => 'varchar', 
+        'length' => 10, 
+        'not null' => TRUE, 
+        'default' => '',
+      ),
+	   'submenu_hover_color' => array(
+        'description' => 'Submenu Hover Color.', 
+        'type' => 'varchar', 
+        'length' => 10, 
+        'not null' => TRUE, 
+        'default' => '',
+      ),
+    ), 
+    'primary key' => array('fmid'),
+  );
+  return $schema;
+
+    
+}
+
+function folder_menu_install()
+{
+    drupal_install_schema('folder_menu');
+}
+
+function folder_menu_uninstall()
+{
+    drupal_uninstall_schema('folder_menu');
+}
+
+?>
