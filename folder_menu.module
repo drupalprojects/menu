@@ -1,0 +1,255 @@
+<?php
+// Folder menu module for Drupal 7
+// Folder menu module help
+function folder_menu_help ($path, $arg) {
+  
+  switch ($path) {
+    case "admin/help#folder_menu":
+	$output = '';
+	$output .= '<h3>'.t("Folder Menu module help.").'</h3>';
+    $output .= '<p>'. t("Change Folder Menu settings and set the Folder Menu in Blocks.") .'</p>';
+    return $output;
+  }
+  
+}
+
+//Folder menu module permissions
+function folder_menu_permission() {
+  return array(
+    'access folder_menu administration' => array(
+      'title' => t('Administer Folder Menu module'),
+    ),
+  );
+}
+
+//Folder menu module settings
+function folder_menu_menu() {
+  $items = array();
+
+  $items['admin/build/folder_menu'] = array(
+    'title' => 'Folder Menu settings', 
+    'description' => 'Description of your folder_menu settings page',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('folder_menu_admin'), 
+    'access arguments' => array('access folder_menu administration'), 
+    'type' => MENU_NORMAL_ITEM, 
+   );
+  return $items;
+}
+
+
+function folder_menu_admin() {
+	
+	drupal_add_js(drupal_get_path('module', 'folder_menu') .'/jscolor/jscolor.js');
+	$form = array();
+	$buy = '<table width="95%" rules="none" style="border:none;">
+			<tr>	
+				<td style="width: 100%; text-align:right;font-size:16px; padding:20px; padding-right:50px; right:0; border:none;">
+					<a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="color:red; text-decoration:none;">
+						<img src="'.drupal_get_path('module', 'folder_menu').'/header.png" border="0" alt="www.web-dorado.com" width="215"><br>
+					Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
+					</a>
+				</td>
+			</tr>
+		</table>';
+	
+	$menus = menu_get_menus();
+	// if (isset($menus['main-menu'])) {
+		// unset($menus['main-menu']);
+	// }
+	
+	$form['buy'] = array(
+		'#type' => 'fieldset', 
+		'#value' => $buy,
+		);
+	$form['folder_menu_menu_parent'] = array(
+        '#type' => 'select',
+        '#title' => t('Menu Parent'),
+        '#description' => t('The menu parent from which to show a Folder menu.'),
+        '#default_value' => variable_get('folder_menu_menu_parent', 'primary-links'),
+        '#options' => $menus,
+      );
+	
+	$form['position'] = array(
+        '#type' => 'select',
+        '#title' => t('Menu Position'),
+        '#description' => t('Position can be absolute or fixed'),
+        '#default_value' => variable_get('position', 'fixed'),
+        '#options' => array('fixed' => 'Fixed', 'absolute' => 'Absolute'),
+      );
+	  
+	$form['distance_from_top'] = array(
+	'#type' => 'textfield',
+	'#title' => 'Distance from top',
+	'#default_value' => variable_get('distance_from_top','0'),
+	'#size' => 21,
+	'#description' => t('Distance from top of the page ( px ).'),
+	);
+	
+	$options_font = array('Verdana' => 'Verdana', 'Lucida' => 'Lucida', 'Georgia' => 'Georgia');
+	$form['menu_font'] = array(
+	'#type' => 'select',
+	'#title' => 'Menu Font',
+	'#options' => $options_font,
+	'#default_value' => variable_get('menu_font','Georgia'),
+	);
+	
+	$form['menu_background_color'] = array(
+	'#type' => 'textfield',
+	'#title' => t('Menu Background Color'),
+	'#default_value' => variable_get('menu_background_color','F2F2F2'),
+	'#attributes' => array('class' => array('color')),
+	'#size' => 21,
+	);
+	
+	$form['menu_text_color'] = array(
+	'#type' => 'textfield',
+	'#title' => t('Menu Text Color'),
+	'#default_value' => variable_get('menu_text_color','525A66'),
+	'#attributes' => array('class' => array('color')),
+	'#size' => 21,
+	);
+	
+	$form['menu_hover_color'] = array(
+	'#type' => 'textfield',	
+	'#title' => t('Menu Hover Color'),
+	'#default_value' => variable_get('menu_hover_color', '7FBFFF'),
+	'#attributes' => array('class' => array('color')),
+	'#size' => 21,
+	);
+	
+	$form['submenu_text_color'] = array(
+	'#type' => 'textfield',
+	'#title' => t('Submenu Text Color'),
+	'#default_value' => variable_get('submenu_text_color', '525A66'),
+	'#attributes' => array('class' => array('color')),
+	'#size' => 21,
+	);
+	
+	$form['submenu_hover_color'] = array(
+	'#type' => 'textfield',
+	'#title' => t('Submenu Hover Color'),
+	'#default_value' => variable_get('submenu_hover_color', '7FBFFF'),
+	'#attributes' => array('class' => array('color')),
+	'#size' => 21,
+	);
+
+	return system_settings_form($form);
+}
+
+//Folder menu in Blocks
+
+function folder_menu_block_info() {
+  $blocks['folder_menu'] = array(
+    'info' => t('Folder menu'), 
+    'cache' => DRUPAL_CACHE_PER_ROLE, 
+  );
+  return $blocks;
+}
+
+function folder_menu_block_view($delta = 0) { 
+ 
+	$menuXmlUrl = drupal_get_path('module', 'folder_menu') .'/menu.php';
+	
+	switch(variable_get('menu_font','Georgia')){
+		case 'Georgia':
+		$swfUrl = drupal_get_path('module', 'folder_menu') .'/VerticalGeorgia';
+		break;
+		case 'Lucida':
+		$swfUrl = drupal_get_path('module', 'folder_menu') .'/VerticalLucida';
+		break;
+		case 'Verdana':
+		$swfUrl = drupal_get_path('module', 'folder_menu') .'/VerticalVerdana';
+		break;
+	}
+    $blocks = array();
+    $blocks['subject'] = '';
+    $blocks['content'] = createFlashDiv($swfUrl, $menuXmlUrl);
+	return $blocks;
+}
+
+
+
+//Run flash
+function createFlashDiv($swfUrl, $menuXmlUrl) {
+	global $addflashonce;
+	$addflashonce=1;
+	
+	drupal_add_js(drupal_get_path('module', 'folder_menu') .'/js/AC_RunActiveContent.js');
+	drupal_add_js(drupal_get_path('module', 'folder_menu') .'/js/functions.js');
+	
+
+	return '
+    <div id="foldermenuverticalContainer" onmouseover="onmouseover_vertical();" onmouseout="onmouseout_vertical();" style="position:fixed; left:0px; top:'.variable_get('distance_from_top','0').'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
+
+    <script>
+
+				if (typeof(AC_FL_RunContent)=="undefined") {
+					alert("This page requires AC_RunActiveContent.js.");
+				} else {
+					AC_FL_RunContent(
+						"codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
+						"width", "1000",
+						"height", "3000",
+						"src", "'.$swfUrl.'",
+						"quality", "high",
+						"pluginspage", "http://www.macromedia.com/go/getflashplayer",
+						"align", "left",
+						"play", "true",
+						"loop", "true",
+						"scale", "showall",
+						"wmode", "transparent",
+						"devicefont", "false",
+						"id", "FolderMenuVerticalElem",
+						"name", "FolderMenuVerticalElem",
+						"menu", "true",
+						"allowFullScreen", "false",
+						"allowScriptAccess","always",
+						"movie", "'.$swfUrl.'",
+						"salign", "t",
+						"flashvars", "xmlUrl='.$menuXmlUrl.'"
+						);
+						
+					if(typeof(FolderMenuVerticalElem)=="undefined") 
+						initFlash_Moz_vertical();
+					else
+						initFlash_vertical();
+					}
+					
+		
+			function onmouseover_vertical() {
+				if(typeof(FolderMenuVerticalObj)!="undefined")	{
+					FolderMenuVerticalObj.TOtrigger=true;
+					FolderMenuVerticalObj.setHeightAndWidthTO();
+				}
+			}
+				
+			function onmouseout_vertical() {
+				if(typeof(FolderMenuVerticalObj)!="undefined")	{
+					FolderMenuVerticalObj.TOtrigger=false;
+				}
+			}
+				
+			function initFlash_Moz_vertical() {
+				if(typeof(document.FolderMenuVerticalElem.getWidth)=="function")
+					FolderMenuVerticalObj=new FolderMenuVertical("foldermenuverticalContainer",document.FolderMenuVerticalElem,"FolderMenuVerticalObj", initFlash_Moz_vertical);
+				else {setTimeout("initFlash_Moz_vertical()",500);}
+			}
+		
+			function initFlash_vertical()	{
+				if(typeof(FolderMenuVerticalElem.getWidth)=="function")
+					FolderMenuVerticalObj=new FolderMenuVertical("foldermenuverticalContainer",FolderMenuVerticalElem,"FolderMenuVerticalObj", initFlash_vertical);
+				else {setTimeout("initFlash_vertical()",500);}
+			}
+			
+			</script>
+		</div>
+		<script>
+			var foldermenuverticalContainerDiv = document.getElementById("foldermenuverticalContainer");
+			document.body.appendChild(foldermenuverticalContainerDiv);
+		
+		</script>';
+
+	}
+	 
+?>
