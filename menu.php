@@ -41,5 +41,3 @@ echo('<dropdown>
 		echo '</menu>';
 	}
 	echo '</dropdown>';
-
-?>

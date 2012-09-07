@@ -164,14 +164,14 @@ function folder_menu_block_view($delta = 0) {
 	}
     $blocks = array();
     $blocks['subject'] = '';
-    $blocks['content'] = createFlashDiv($swfUrl, $menuXmlUrl);
+    $blocks['content'] = folder_menu_createFlashDiv($swfUrl, $menuXmlUrl);
 	return $blocks;
 }
 
 
 
 //Run flash
-function createFlashDiv($swfUrl, $menuXmlUrl) {
+function folder_menu_createFlashDiv($swfUrl, $menuXmlUrl) {
 	global $addflashonce;
 	$addflashonce=1;
 	
@@ -251,5 +251,3 @@ function createFlashDiv($swfUrl, $menuXmlUrl) {
 		</script>';
 
 	}
-	 
-?>
