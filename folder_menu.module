@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Folder menu module for Drupal 7
- */
+* Folder menu module for Drupal 7
+*/
 
 /**
- * Implements hook_help().
- */
+* Implements hook_help().
+*/
 function folder_menu_help ($path, $arg){
   switch ($path){
     case "admin/help#folder_menu":
