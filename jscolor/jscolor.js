@@ -921,7 +921,8 @@ var jscolor = {
     var valueElement = jscolor.fetchElement(this.valueElement), styleElement = jscolor
         .fetchElement(this.styleElement);
     var holdPad = false, holdSld = false;
-    var leaveValue = 1 << 0, leaveStyle = 1 << 1, leavePad = 1 << 2, leaveSld = 1 << 3;
+    //var leaveValue = 1 << 0, leaveStyle = 1 << 1, leavePad = 1 << 2, leaveSld = 1 << 3;
+    var leaveValue = 1, leaveStyle = 2, leavePad = 4, leaveSld = 8;
 
     // target
     jscolor.addEvent(target, 'focus', function() {
