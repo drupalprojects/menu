@@ -106,7 +106,8 @@ function GetSwfVer() {
     }
   }
   // MSN/WebTV 2.6 supports Flash 4
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
+  else
+    if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
     flashVer = 4;
   // WebTV 2.5 supports Flash 3
   else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
