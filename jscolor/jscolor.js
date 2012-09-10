@@ -65,7 +65,7 @@ var jscolor = {
 
   bind : function() {
     var matchClass = new RegExp('(^|\\s)(' + jscolor.bindClass
-        + ')\\s*(\\{[^}]*\\})?', 'i');
+ + ')\\s*(\\{[^}]*\\})?', 'i');
     var e = document.getElementsByTagName('input');
     for (var i = 0; i < e.length; i += 1) {
       var m;
