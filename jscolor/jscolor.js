@@ -64,7 +64,7 @@ var jscolor = {
   },
 
   bind : function() {
-    var matchClass = new RegExp('(^|\\s)(' + jscolor.bindClass 
+    var matchClass = new RegExp('(^|\\s)(' + jscolor.bindClass
         + ')\\s*(\\{[^}]*\\})?', 'i');
     var e = document.getElementsByTagName('input');
     for (var i = 0; i < e.length; i += 1) {
@@ -409,12 +409,12 @@ var jscolor = {
           break;
         }
         var l = (ts[b] + ps[b]) / 2;
-        var pp = [ // picker pos
-            -vp[a] + tp[a] + ps[a] > vs[a] ? (-vp[a] + tp[a] + ts[a] / 2 > vs[a] / 2
+        var pp = [
+                  -vp[a] + tp[a] + ps[a] > vs[a] ? (-vp[a] + tp[a] + ts[a] / 2 > vs[a] / 2
                 && tp[a] + ts[a] - ps[a] >= 0 ? tp[a] + ts[a] - ps[a] : tp[a])
                 : tp[a],
             -vp[b] + tp[b] + ts[b] + ps[b] - l + l * c > vs[b] ? (-vp[b]
-                + tp[b] + ts[b] / 2 > vs[b] / 2
+            + tp[b] + ts[b] / 2 > vs[b] / 2
                 && tp[b] + ts[b] - l - l * c >= 0 ? tp[b] + ts[b] - l - l * c
                 : tp[b] + ts[b] - l + l * c)
                 : (tp[b] + ts[b] - l + l * c >= 0 ? tp[b] + ts[b] - l + l * c
@@ -461,7 +461,7 @@ var jscolor = {
       if (!(flags & leaveStyle) && styleElement) {
         styleElement.style.backgroundColor = '#' + this.toString();
         styleElement.style.color = 0.213 * this.rgb[0] + 0.715 * this.rgb[1]
-            + 0.072 * this.rgb[2] < 0.5 ? '#FFF' : '#000';
+        + 0.072 * this.rgb[2] < 0.5 ? '#FFF' : '#000';
       }
       if (!(flags & leavePad) && isPickerOwner()) {
         redrawPad();
@@ -471,7 +471,7 @@ var jscolor = {
       }
     };
 
-    this.fromHSV = function(h, s, v, flags) { // null = don't change
+    this.fromHSV = function(h, s, v, flags) {
       h < 0 && (h = 0) || h > 6 && (h = 6);
       s < 0 && (s = 0) || s > 1 && (s = 1);
       v < 0 && (v = 0) || v > 1 && (v = 1);
@@ -481,7 +481,7 @@ var jscolor = {
       this.exportColor(flags);
     };
 
-    this.fromRGB = function(r, g, b, flags) { // null = don't change
+    this.fromRGB = function(r, g, b, flags) {
       r < 0 && (r = 0) || r > 1 && (r = 1);
       g < 0 && (g = 0) || g > 1 && (g = 1);
       b < 0 && (b = 0) || b > 1 && (b = 1);
@@ -503,11 +503,11 @@ var jscolor = {
       if (!m) {
         return false;
       } else {
-        if (m[1].length === 6) { // 6-char notation
+        if (m[1].length === 6) {
           this.fromRGB(parseInt(m[1].substr(0, 2), 16) / 255, parseInt(m[1]
               .substr(2, 2), 16) / 255, parseInt(m[1].substr(4, 2), 16) / 255,
               flags);
-        } else { // 3-char notation
+        } else {
           this.fromRGB(parseInt(m[1].charAt(0) + m[1].charAt(0), 16) / 255,
               parseInt(m[1].charAt(1) + m[1].charAt(1), 16) / 255, parseInt(
                   m[1].charAt(2) + m[1].charAt(2), 16) / 255, flags);
@@ -579,7 +579,7 @@ var jscolor = {
           btnS : document.createElement('span'),
           btnT : document.createTextNode(THIS.pickerCloseText)
         };
-        for ( var i = 0, segSize = 4; i < jscolor.images.sld[1]; i += segSize) {
+        for (var i = 0, segSize = 4; i < jscolor.images.sld[1]; i += segSize) {
           var seg = document.createElement('div');
           seg.style.height = segSize + 'px';
           seg.style.fontSize = '1px';
@@ -670,7 +670,7 @@ var jscolor = {
       p.padM.style.left = '0';
       p.padM.style.top = '0';
       p.padM.style.width = THIS.pickerFace + 2 * THIS.pickerInset
-          + jscolor.images.pad[0] + jscolor.images.arrow[0] + 'px';
+      + jscolor.images.pad[0] + jscolor.images.arrow[0] + 'px';
       p.padM.style.height = p.box.style.height;
       p.padM.style.cursor = 'crosshair';
 
@@ -693,7 +693,7 @@ var jscolor = {
       p.sldM.style.right = '0';
       p.sldM.style.top = '0';
       p.sldM.style.width = jscolor.images.sld[0] + jscolor.images.arrow[0]
-          + THIS.pickerFace + 2 * THIS.pickerInset + 'px';
+      + THIS.pickerFace + 2 * THIS.pickerInset + 'px';
       p.sldM.style.height = p.box.style.height;
       try {
         p.sldM.style.cursor = 'pointer';
@@ -706,7 +706,7 @@ var jscolor = {
         var insetColors = THIS.pickerInsetColor.split(/\s+/);
         var pickerOutsetColor = insetColors.length < 2 ? insetColors[0]
             : insetColors[1] + ' ' + insetColors[0] + ' ' + insetColors[0]
-                + ' ' + insetColors[1];
+        + ' ' + insetColors[1];
         p.btn.style.borderColor = pickerOutsetColor;
       }
       p.btn.style.display = THIS.pickerClosable ? 'block' : 'none';
@@ -735,6 +735,7 @@ var jscolor = {
       case 0:
         var padImg = 'hs.png';
         break;
+
       case 1:
         var padImg = 'hv.png';
         break;
@@ -758,12 +759,12 @@ var jscolor = {
     function getPickerDims(o) {
       var dims = [
           2
-              * o.pickerInset
-              + 2
-              * o.pickerFace
-              + jscolor.images.pad[0]
-              + (o.slider ? 2 * o.pickerInset + 2 * jscolor.images.arrow[0]
-                  + jscolor.images.sld[0] : 0),
+          * o.pickerInset
+          + 2
+          * o.pickerFace
+          + jscolor.images.pad[0]
+          + (o.slider ? 2 * o.pickerInset + 2 * jscolor.images.arrow[0]
+          + jscolor.images.sld[0] : 0),
           o.pickerClosable ? 4 * o.pickerInset + 3 * o.pickerFace
               + jscolor.images.pad[1] + o.pickerButtonHeight : 2
               * o.pickerInset + 2 * o.pickerFace + jscolor.images.pad[1] ];
@@ -776,6 +777,7 @@ var jscolor = {
       case 0:
         var yComponent = 1;
         break;
+
       case 1:
         var yComponent = 2;
         break;
@@ -795,13 +797,14 @@ var jscolor = {
       switch (modeID) {
       case 0:
         var rgb = HSV_RGB(THIS.hsv[0], THIS.hsv[1], 1);
-        for ( var i = 0; i < seg.length; i += 1) {
+        for (var i = 0; i < seg.length; i += 1) {
           seg[i].style.backgroundColor = 'rgb('
-              + (rgb[0] * (1 - i / seg.length) * 100) + '%,'
-              + (rgb[1] * (1 - i / seg.length) * 100) + '%,'
-              + (rgb[2] * (1 - i / seg.length) * 100) + '%)';
+            + (rgb[0] * (1 - i / seg.length) * 100) + '%,'
+            + (rgb[1] * (1 - i / seg.length) * 100) + '%,'
+            + (rgb[2] * (1 - i / seg.length) * 100) + '%)';
         }
         break;
+
       case 1:
         var rgb, s, c = [ THIS.hsv[2], 0, 0 ];
         var i = Math.floor(THIS.hsv[0]);
@@ -811,28 +814,34 @@ var jscolor = {
         case 0:
           rgb = [ 0, 1, 2 ];
           break;
+
         case 1:
           rgb = [ 1, 0, 2 ];
           break;
+
         case 2:
           rgb = [ 2, 0, 1 ];
           break;
+
         case 3:
           rgb = [ 2, 1, 0 ];
           break;
+
         case 4:
           rgb = [ 1, 2, 0 ];
           break;
+
         case 5:
           rgb = [ 0, 2, 1 ];
           break;
+
         }
-        for ( var i = 0; i < seg.length; i += 1) {
+        for (var i = 0; i < seg.length; i += 1) {
           s = 1 - 1 / (seg.length - 1) * i;
           c[1] = c[0] * (1 - s * f);
           c[2] = c[0] * (1 - s);
           seg[i].style.backgroundColor = 'rgb(' + (c[rgb[0]] * 100) + '%,'
-              + (c[rgb[1]] * 100) + '%,' + (c[rgb[2]] * 100) + '%)';
+          + (c[rgb[1]] * 100) + '%,' + (c[rgb[2]] * 100) + '%)';
         }
         break;
       }
@@ -844,6 +853,7 @@ var jscolor = {
       case 0:
         var yComponent = 2;
         break;
+
       case 1:
         var yComponent = 1;
         break;
@@ -851,7 +861,7 @@ var jscolor = {
       var y = Math.round((1 - THIS.hsv[yComponent])
           * (jscolor.images.sld[1] - 1));
       jscolor.picker.sldM.style.backgroundPosition = '0 '
-          + (THIS.pickerFace + THIS.pickerInset + y - Math
+        + (THIS.pickerFace + THIS.pickerInset + y - Math
               .floor(jscolor.images.arrow[1] / 2)) + 'px';
     }
 
@@ -883,6 +893,7 @@ var jscolor = {
         THIS.fromHSV(x * (6 / (jscolor.images.pad[0] - 1)), 1 - y
             / (jscolor.images.pad[1] - 1), null, leaveSld);
         break;
+
       case 1:
         THIS.fromHSV(x * (6 / (jscolor.images.pad[0] - 1)), null, 1 - y
             / (jscolor.images.pad[1] - 1), leaveSld);
@@ -897,6 +908,7 @@ var jscolor = {
       case 0:
         THIS.fromHSV(null, null, 1 - y / (jscolor.images.sld[1] - 1), leavePad);
         break;
+
       case 1:
         THIS.fromHSV(null, 1 - y / (jscolor.images.sld[1] - 1), null, leavePad);
         break;
@@ -952,6 +964,7 @@ var jscolor = {
     case 0:
       jscolor.requireImage('hs.png');
       break;
+
     case 1:
       jscolor.requireImage('hv.png');
       break;
