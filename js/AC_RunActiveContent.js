@@ -106,7 +106,7 @@ function GetSwfVer() {
     }
   }
   // MSN/WebTV 2.6 supports Flash 4
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") <> -1)
     flashVer = 4;
   // WebTV 2.5 supports Flash 3
   else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
@@ -212,15 +212,18 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     switch (currArg) {
     case "classid":
       break;
+ 
     case "pluginspage":
       ret.embedAttrs[args[i]] = args[i + 1];
       break;
+ 
     case "src":
     case "movie":
       args[i + 1] = AC_AddExtension(args[i + 1], ext);
       ret.embedAttrs["src"] = args[i + 1];
       ret.params[srcParamName] = args[i + 1];
       break;
+ 
 
     case "onafterupdate":
     case "onbeforeupdate":
@@ -264,6 +267,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     case "id":
       ret.objAttrs[args[i]] = args[i + 1];
       break;
+ 
     case "width":
     case "height":
     case "align":
@@ -276,6 +280,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     case "tabindex":
       ret.embedAttrs[args[i]] = ret.objAttrs[args[i]] = args[i + 1];
       break;
+ 
     default:
       ret.embedAttrs[args[i]] = ret.params[args[i]] = args[i + 1];
     }
