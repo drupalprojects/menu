@@ -193,7 +193,7 @@ function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
 
-  return '<div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
+  return '<div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:' . variable_get('position', 'fixed') . '">
 
   <script>
 
