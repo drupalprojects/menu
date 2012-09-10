@@ -5,7 +5,8 @@
 ----------------------Folder Menu is a flash dynamic menu module for your
 Drupal 6.x,7.x website, designed to meet your needs and preferences.
 =======
-----------------------Folder Menu is a flash dynamic menu module for your Drupal 6.x,7.x website, designed to meet your needs and preferences.
+----------------------Folder Menu is a flash dynamic menu module for your
+Drupal 6.x,7.x website, designed to meet your needs and preferences.
 >>>>>>> 7f782039af819a9bc62aef68a25c844835b43366
 Main features:
 Possibility to customize the product using various parameters.
@@ -19,9 +20,11 @@ Folder Menu makes the Menu very convenient and easy-to-use.
 Now you can organize your website pages more easily and present user-friendly
 websites to your customers and visitors.
 =======
-Interface fully integrated with Drupal administration, which allows to use Folder Menu with new or existing menus of Drupal.
+Interface fully integrated with Drupal administration, which allows to use
+Folder Menu with new or existing menus of Drupal.
 Folder Menu makes the Menu very convenient and easy-to-use.
-Now you can organize your website pages more easily and present user-friendly websites to your customers and visitors.
+Now you can organize your website pages more easily and present user-friendly
+websites to your customers and visitors.
 >>>>>>> 7f782039af819a9bc62aef68a25c844835b43366
 -----------------------
   INSTALLATION
