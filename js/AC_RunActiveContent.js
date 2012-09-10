@@ -106,17 +106,24 @@ function GetSwfVer() {
     }
   }
   // MSN/WebTV 2.6 supports Flash 4
-  else
+  else {
     if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
-    flashVer = 4;
-  // WebTV 2.5 supports Flash 3
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
-    flashVer = 3;
-  // older WebTV supports Flash 2
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
-    flashVer = 2;
-  else if (isIE && isWin && !isOpera) {
-    flashVer = ControlVersion();
+      flashVer = 4;
+    // WebTV 2.5 supports Flash 3
+    else {
+      if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
+        flashVer = 3;
+      // older WebTV supports Flash 2
+      else {
+        if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
+          flashVer = 2;
+        else {
+          if (isIE && isWin && !isOpera) {
+            flashVer = ControlVersion();
+          }
+        }
+      }
+    }
   }
   return flashVer;
 }
@@ -132,9 +139,12 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
   } else if (versionStr != 0) {
     if (isIE && isWin && !isOpera) {
       // Given "WIN 2,0,0,11"
-      tempArray = versionStr.split(" "); // ["WIN", "2,0,0,11"]
-      tempString = tempArray[1]; // "2,0,0,11"
-      versionArray = tempString.split(","); // ['2', '0', '0', '11']
+      // ["WIN", "2,0,0,11"]
+      tempArray = versionStr.split(" ");
+      // "2,0,0,11"
+      tempString = tempArray[1];
+      // ['2', '0', '0', '11']
+      versionArray = tempString.split(",");
     } else {
       versionArray = versionStr.split(".");
     }
@@ -219,6 +229,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
       ret.embedAttrs["src"] = args[i + 1];
       ret.params[srcParamName] = args[i + 1];
       break;
+
     case "onafterupdate":
     case "onbeforeupdate":
     case "onblur":
