@@ -212,18 +212,17 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     switch (currArg) {
     case "classid":
       break;
- 
+
     case "pluginspage":
       ret.embedAttrs[args[i]] = args[i + 1];
       break;
- 
+
     case "src":
     case "movie":
       args[i + 1] = AC_AddExtension(args[i + 1], ext);
       ret.embedAttrs["src"] = args[i + 1];
       ret.params[srcParamName] = args[i + 1];
       break;
- 
 
     case "onafterupdate":
     case "onbeforeupdate":
@@ -267,7 +266,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     case "id":
       ret.objAttrs[args[i]] = args[i + 1];
       break;
- 
+
     case "width":
     case "height":
     case "align":
@@ -280,13 +279,14 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     case "tabindex":
       ret.embedAttrs[args[i]] = ret.objAttrs[args[i]] = args[i + 1];
       break;
- 
+
     default:
       ret.embedAttrs[args[i]] = ret.params[args[i]] = args[i + 1];
     }
   }
   ret.objAttrs["classid"] = classid;
-  if (mimeType)
+  if (mimeType) {
     ret.embedAttrs["type"] = mimeType;
+  }
   return ret;
 }
