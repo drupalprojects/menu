@@ -1,8 +1,6 @@
 /**
- * v1.7
- * Flash Player Version Detection
- * Detect Client Browser type
- * Copyright 2005-2007 Adobe Systems Incorporated.  All rights reserved.
+ * v1.7 Flash Player Version Detection Detect Client Browser type Copyright
+ * 2005-2007 Adobe Systems Incorporated. All rights reserved.
  */
 var isIE = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;
 var isWin = (navigator.appVersion.toLowerCase().indexOf("win") != -1) ? true
@@ -108,15 +106,17 @@ function GetSwfVer() {
     }
   }
   // MSN/WebTV 2.6 supports Flash 4
-  elseif (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1) {
     flashVer = 4;
+  }
   // WebTV 2.5 supports Flash 3
-  elseif (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1) {
     flashVer = 3;
+  }
   // older WebTV supports Flash 2
-  elseif (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1) {
     flashVer = 2;
-  else if (isIE && isWin && !isOpera) {
+  } else if (isIE && isWin && !isOpera) {
     flashVer = ControlVersion();
   }
   return flashVer;
@@ -146,11 +146,12 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
     if (versionMajor > parseFloat(reqMajorVer)) {
       return true;
     } else if (versionMajor == parseFloat(reqMajorVer)) {
-      if (versionMinor > parseFloat(reqMinorVer))
+      if (versionMinor > parseFloat(reqMinorVer)) {
         return true;
-      else if (versionMinor == parseFloat(reqMinorVer)) {
-        if (versionRevision >= parseFloat(reqRevision))
+      } else if (versionMinor == parseFloat(reqMinorVer)) {
+        if (versionRevision >= parseFloat(reqRevision)) {
           return true;
+        }
       }
     }
     return false;
@@ -168,17 +169,17 @@ function AC_Generateobj(objAttrs, params, embedAttrs) {
   var str = '';
   if (isIE && isWin && !isOpera) {
     str += '<object ';
-    for (var i in objAttrs) {
+    for ( var i in objAttrs) {
       str += i + '="' + objAttrs[i] + '" ';
     }
     str += '>';
-    for (var i in params) {
+    for ( var i in params) {
       str += '<param name="' + i + '" value="' + params[i] + '" /> ';
     }
     str += '</object>';
   } else {
     str += '<embed ';
-    for (var i in embedAttrs) {
+    for ( var i in embedAttrs) {
       str += i + '="' + embedAttrs[i] + '" ';
     }
     str += '> </embed>';
@@ -205,7 +206,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
   ret.embedAttrs = new Object();
   ret.params = new Object();
   ret.objAttrs = new Object();
-  for (var i = 0; i < args.length; i = i + 2) {
+  for ( var i = 0; i < args.length; i = i + 2) {
     var currArg = args[i].toLowerCase();
 
     switch (currArg) {
