@@ -1,16 +1,19 @@
 <?php
+/**
+ * menu.php
+ */
 
-define('DRUPAL_ROOT', '../../../../');
+define('DRUPAL_ROOT', '../ ../ ../ ../');
 require_once DRUPAL_ROOT.'/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
-echo('<dropdown>
+echo ('<dropdown>
         <settings
-        menuColor = "0x'.variable_get('menu_background_color', 'F2F2F2').'"
-        menuFontColor = "0x'.variable_get('menu_text_color', '525A66').'"
-        menuFontGlowColor = "0x'.variable_get('menu_hover_color', '7FBFFF').'"
-        subMenuFontColor = "0x'.variable_get('submenu_text_color', '525A66').'"
-        subMenuFontGlowColor = "0x'.variable_get('submenu_hover_color', '7FBFFF').'"
+        menuColor = "0x'. variable_get('menu_background_color', 'F2F2F2') .'"
+        menuFontColor = "0x'. variable_get('menu_text_color', '525A66') .'"
+        menuFontGlowColor = "0x'. variable_get('menu_hover_color', '7FBFFF') .'"
+        subMenuFontColor = "0x'. variable_get('submenu_text_color', '525A66') .'"
+        subMenuFontGlowColor = "0x'. variable_get('submenu_hover_color', '7FBFFF') .'"
         >
         </settings>');
 
