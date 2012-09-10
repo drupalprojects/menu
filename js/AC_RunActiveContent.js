@@ -133,9 +133,9 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
   } else if (versionStr != 0) {
     if (isIE && isWin && !isOpera) {
       // Given "WIN 2,0,0,11"
-      tempArray = versionStr.split(" "); // ["WIN", "2,0,0,11"]
-      tempString = tempArray[1]; // "2,0,0,11"
-      versionArray = tempString.split(","); // ['2', '0', '0', '11']
+      tempArray = versionStr.split(" ");
+      tempString = tempArray[1];
+      versionArray = tempString.split(",");
     } else {
       versionArray = versionStr.split(".");
     }
@@ -168,17 +168,17 @@ function AC_Generateobj(objAttrs, params, embedAttrs) {
   var str = '';
   if (isIE && isWin && !isOpera) {
     str += '<object ';
-    for ( var i in objAttrs) {
+    for (var i in objAttrs) {
       str += i + '="' + objAttrs[i] + '" ';
     }
     str += '>';
-    for ( var i in params) {
+    for (var i in params) {
       str += '<param name="' + i + '" value="' + params[i] + '" /> ';
     }
     str += '</object>';
   } else {
     str += '<embed ';
-    for ( var i in embedAttrs) {
+    for (var i in embedAttrs) {
       str += i + '="' + embedAttrs[i] + '" ';
     }
     str += '> </embed>';
@@ -205,21 +205,24 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
   ret.embedAttrs = new Object();
   ret.params = new Object();
   ret.objAttrs = new Object();
-  for ( var i = 0; i < args.length; i = i + 2) {
+  for (var i = 0; i < args.length; i = i + 2) {
     var currArg = args[i].toLowerCase();
 
     switch (currArg) {
     case "classid":
       break;
+
     case "pluginspage":
       ret.embedAttrs[args[i]] = args[i + 1];
       break;
+
     case "src":
     case "movie":
       args[i + 1] = AC_AddExtension(args[i + 1], ext);
       ret.embedAttrs["src"] = args[i + 1];
       ret.params[srcParamName] = args[i + 1];
       break;
+
     case "onafterupdate":
     case "onbeforeupdate":
     case "onblur":
@@ -262,6 +265,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     case "id":
       ret.objAttrs[args[i]] = args[i + 1];
       break;
+
     case "width":
     case "height":
     case "align":
@@ -274,6 +278,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     case "tabindex":
       ret.embedAttrs[args[i]] = ret.objAttrs[args[i]] = args[i + 1];
       break;
+
     default:
       ret.embedAttrs[args[i]] = ret.params[args[i]] = args[i + 1];
     }
