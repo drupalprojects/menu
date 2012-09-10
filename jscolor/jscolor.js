@@ -414,7 +414,7 @@ var jscolor = {
                 && tp[a] + ts[a] - ps[a] >= 0 ? tp[a] + ts[a] - ps[a] : tp[a])
                 : tp[a],
             -vp[b] + tp[b] + ts[b] + ps[b] - l + l * c > vs[b] ? (-vp[b]
-            + tp[b] + ts[b] / 2 > vs[b] / 2
+ + tp[b] + ts[b] / 2 > vs[b] / 2
                 && tp[b] + ts[b] - l - l * c >= 0 ? tp[b] + ts[b] - l - l * c
                 : tp[b] + ts[b] - l + l * c)
                 : (tp[b] + ts[b] - l + l * c >= 0 ? tp[b] + ts[b] - l + l * c
@@ -461,7 +461,7 @@ var jscolor = {
       if (!(flags & leaveStyle) && styleElement) {
         styleElement.style.backgroundColor = '#' + this.toString();
         styleElement.style.color = 0.213 * this.rgb[0] + 0.715 * this.rgb[1]
-        + 0.072 * this.rgb[2] < 0.5 ? '#FFF' : '#000';
+ + 0.072 * this.rgb[2] < 0.5 ? '#FFF' : '#000';
       }
       if (!(flags & leavePad) && isPickerOwner()) {
         redrawPad();
@@ -518,7 +518,7 @@ var jscolor = {
 
     this.toString = function() {
       return ((0x100 | Math.round(255 * this.rgb[0])).toString(16).substr(1)
-          + (0x100 | Math.round(255 * this.rgb[1])).toString(16).substr(1) + (0x100 | Math
+ + (0x100 | Math.round(255 * this.rgb[1])).toString(16).substr(1) + (0x100 | Math
           .round(255 * this.rgb[2])).toString(16).substr(1));
     };
 
@@ -530,7 +530,7 @@ var jscolor = {
         return [ null, 0, v ];
       }
       var h = r === n ? 3 + (b - g) / m : (g === n ? 5 + (r - b) / m : 1
-          + (g - r) / m);
+ + (g - r) / m);
       return [ h === 6 ? 0 : h, m / v, v ];
     }
 
@@ -670,7 +670,7 @@ var jscolor = {
       p.padM.style.left = '0';
       p.padM.style.top = '0';
       p.padM.style.width = THIS.pickerFace + 2 * THIS.pickerInset
-      + jscolor.images.pad[0] + jscolor.images.arrow[0] + 'px';
+ + jscolor.images.pad[0] + jscolor.images.arrow[0] + 'px';
       p.padM.style.height = p.box.style.height;
       p.padM.style.cursor = 'crosshair';
 
@@ -693,7 +693,7 @@ var jscolor = {
       p.sldM.style.right = '0';
       p.sldM.style.top = '0';
       p.sldM.style.width = jscolor.images.sld[0] + jscolor.images.arrow[0]
-      + THIS.pickerFace + 2 * THIS.pickerInset + 'px';
+ + THIS.pickerFace + 2 * THIS.pickerInset + 'px';
       p.sldM.style.height = p.box.style.height;
       try {
         p.sldM.style.cursor = 'pointer';
@@ -706,7 +706,7 @@ var jscolor = {
         var insetColors = THIS.pickerInsetColor.split(/\s+/);
         var pickerOutsetColor = insetColors.length < 2 ? insetColors[0]
             : insetColors[1] + ' ' + insetColors[0] + ' ' + insetColors[0]
-        + ' ' + insetColors[1];
+ + ' ' + insetColors[1];
         p.btn.style.borderColor = pickerOutsetColor;
       }
       p.btn.style.display = THIS.pickerClosable ? 'block' : 'none';
@@ -759,15 +759,15 @@ var jscolor = {
     function getPickerDims(o) {
       var dims = [
           2
-          * o.pickerInset
-          + 2
-          * o.pickerFace
-          + jscolor.images.pad[0]
-          + (o.slider ? 2 * o.pickerInset + 2 * jscolor.images.arrow[0]
-          + jscolor.images.sld[0] : 0),
+ * o.pickerInset
+ + 2
+ * o.pickerFace
+ + jscolor.images.pad[0]
+ + (o.slider ? 2 * o.pickerInset + 2 * jscolor.images.arrow[0]
+ + jscolor.images.sld[0] : 0),
           o.pickerClosable ? 4 * o.pickerInset + 3 * o.pickerFace
-              + jscolor.images.pad[1] + o.pickerButtonHeight : 2
-              * o.pickerInset + 2 * o.pickerFace + jscolor.images.pad[1] ];
+ + jscolor.images.pad[1] + o.pickerButtonHeight : 2
+ * o.pickerInset + 2 * o.pickerFace + jscolor.images.pad[1] ];
       return dims;
     }
 
@@ -784,11 +784,11 @@ var jscolor = {
       }
       var x = Math.round((THIS.hsv[0] / 6) * (jscolor.images.pad[0] - 1));
       var y = Math.round((1 - THIS.hsv[yComponent])
-          * (jscolor.images.pad[1] - 1));
+ * (jscolor.images.pad[1] - 1));
       jscolor.picker.padM.style.backgroundPosition = (THIS.pickerFace
-          + THIS.pickerInset + x - Math.floor(jscolor.images.cross[0] / 2))
-          + 'px '
-          + (THIS.pickerFace + THIS.pickerInset + y - Math
+ + THIS.pickerInset + x - Math.floor(jscolor.images.cross[0] / 2))
+ + 'px '
+ + (THIS.pickerFace + THIS.pickerInset + y - Math
               .floor(jscolor.images.cross[1] / 2)) + 'px';
 
       // redraw the slider image
@@ -799,9 +799,9 @@ var jscolor = {
         var rgb = HSV_RGB(THIS.hsv[0], THIS.hsv[1], 1);
         for (var i = 0; i < seg.length; i += 1) {
           seg[i].style.backgroundColor = 'rgb('
-            + (rgb[0] * (1 - i / seg.length) * 100) + '%,'
-            + (rgb[1] * (1 - i / seg.length) * 100) + '%,'
-            + (rgb[2] * (1 - i / seg.length) * 100) + '%)';
+ + (rgb[0] * (1 - i / seg.length) * 100) + '%,'
+ + (rgb[1] * (1 - i / seg.length) * 100) + '%,'
+ + (rgb[2] * (1 - i / seg.length) * 100) + '%)';
         }
         break;
 
@@ -841,7 +841,7 @@ var jscolor = {
           c[1] = c[0] * (1 - s * f);
           c[2] = c[0] * (1 - s);
           seg[i].style.backgroundColor = 'rgb(' + (c[rgb[0]] * 100) + '%,'
-          + (c[rgb[1]] * 100) + '%,' + (c[rgb[2]] * 100) + '%)';
+ + (c[rgb[1]] * 100) + '%,' + (c[rgb[2]] * 100) + '%)';
         }
         break;
       }
@@ -859,9 +859,9 @@ var jscolor = {
         break;
       }
       var y = Math.round((1 - THIS.hsv[yComponent])
-          * (jscolor.images.sld[1] - 1));
+ * (jscolor.images.sld[1] - 1));
       jscolor.picker.sldM.style.backgroundPosition = '0 '
-        + (THIS.pickerFace + THIS.pickerInset + y - Math
+ + (THIS.pickerFace + THIS.pickerInset + y - Math
               .floor(jscolor.images.arrow[1] / 2)) + 'px';
     }
 
@@ -891,12 +891,12 @@ var jscolor = {
       switch (modeID) {
       case 0:
         THIS.fromHSV(x * (6 / (jscolor.images.pad[0] - 1)), 1 - y
-            / (jscolor.images.pad[1] - 1), null, leaveSld);
+ / (jscolor.images.pad[1] - 1), null, leaveSld);
         break;
 
       case 1:
         THIS.fromHSV(x * (6 / (jscolor.images.pad[0] - 1)), null, 1 - y
-            / (jscolor.images.pad[1] - 1), leaveSld);
+ / (jscolor.images.pad[1] - 1), leaveSld);
         break;
       }
     }
