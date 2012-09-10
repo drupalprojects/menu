@@ -150,8 +150,9 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
       if (versionMinor > parseFloat(reqMinorVer))
         return true;
       elseif (versionMinor == parseFloat(reqMinorVer)) {
-        if (versionRevision >= parseFloat(reqRevision))
+        if (versionRevision >= parseFloat(reqRevision)) {
           return true;
+        }
       }
     }
     return false;
@@ -159,10 +160,12 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
 }
 
 function AC_AddExtension(src, ext) {
-  if (src.indexOf('?') != -1)
+  if (src.indexOf('?') != -1) {
     return src.replace(/\?/, ext + '?');
-  else
+  }
+  else {
     return src + ext;
+  }
 }
 
 function AC_Generateobj(objAttrs, params, embedAttrs) {
