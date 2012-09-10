@@ -12,7 +12,7 @@ function folder_menu_help($path, $arg) {
     case "admin/help#folder_menu":
       $output = '';
       $output .= '<h3>' . t("Folder Menu module help.") . '</h3>';
-      $output .= '<p>'.t("Change Folder Menu settings and set the Folder Menu in Blocks.").'</p>';
+      $output .= '<p>' . t("Change Folder Menu settings and set the Folder Menu in Blocks.") . '</p>';
       return $output;
   }
 }
@@ -20,26 +20,26 @@ function folder_menu_help($path, $arg) {
 /**
  * Implements hook_permissions().
  */
-function folder_menu_permission(){
+function folder_menu_permission() {
   return array(
-      'access folder_menu administration' => array(
-          'title' => t('Administer Folder Menu module'),
-      ),
+    'access folder_menu administration' => array(
+        'title' => t('Administer Folder Menu module'),
+    ),
   );
 }
 
 /**
  * Implements hook_menu().
  */
-function folder_menu_menu(){
+function folder_menu_menu() {
   $items = array();
   $items['admin/build/folder_menu'] = array(
-      'title' => 'Folder Menu settings',
-      'description' => 'Description of your folder_menu settings page',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('folder_menu_admin'),
-      'access arguments' => array('access folder_menu administration'),
-      'type' => MENU_NORMAL_ITEM,
+    'title' => 'Folder Menu settings',
+    'description' => 'Description of your folder_menu settings page',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('folder_menu_admin'),
+    'access arguments' => array('access folder_menu administration'),
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
@@ -47,14 +47,14 @@ function folder_menu_menu(){
 /**
  * Implements hook_admin().
  */
-function folder_menu_admin(){
-  drupal_add_js(drupal_get_path('module', 'folder_menu') .'/jscolor/jscolor.js');
+function folder_menu_admin() {
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/jscolor/jscolor.js');
   $form = array();
   $buy = '<table width="95%" rules="none" style="border:none;">
   <tr>
   <td style="width: 100%; text-align:right;font-size:16px; padding:20px; padding-right:50px; right:0; border:none;">
   <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="color:red; text-decoration:none;">
-  <img src="'.drupal_get_path('module', 'folder_menu').'/header.png" border="0" alt="www.web-dorado.com" width="215"><br>
+  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215"><br>
   Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
   </a>
   </td>
@@ -62,81 +62,82 @@ function folder_menu_admin(){
   </table>';
 
   $menus = menu_get_menus();
- 
+
   $form['buy'] = array(
-      '#type' => 'fieldset',
-      '#value' => $buy,
+    '#type' => 'fieldset',
+    '#value' => $buy,
   );
   $form['folder_menu_menu_parent'] = array(
-      '#type' => 'select',
-      '#title' => t('Menu Parent'),
-      '#description' => t('The menu parent from which to show a Folder menu.'),
-      '#default_value' => variable_get('folder_menu_menu_parent', 'primary-links'),
-      '#options' => $menus,
+    '#type' => 'select',
+    '#title' => t('Menu Parent'),
+    '#description' => t('The menu parent from which to show a Folder menu.'),
+    '#default_value' => variable_get('folder_menu_menu_parent', 'primary-links'),
+    '#options' => $menus,
   );
 
   $form['position'] = array(
-      '#type' => 'select',
-      '#title' => t('Menu Position'),
-      '#description' => t('Position can be absolute or fixed'),
-      '#default_value' => variable_get('position', 'fixed'),
-      '#options' => array('fixed' => 'Fixed', 'absolute' => 'Absolute'),
+    '#type' => 'select',
+    '#title' => t('Menu Position'),
+    '#description' => t('Position can be absolute or fixed'),
+    '#default_value' => variable_get('position', 'fixed'),
+    '#options' => array('fixed' => 'Fixed', 'absolute' => 'Absolute'),
   );
 
   $form['distance_from_top'] = array(
-      '#type' => 'textfield',
-      '#title' => 'Distance from top',
-      '#default_value' => variable_get('distance_from_top','0'),
-      '#size' => 21,
-      '#description' => t('Distance from top of the page ( px ).'),
+    '#type' => 'textfield',
+    '#title' => 'Distance from top',
+    '#default_value' => variable_get('distance_from_top', '0'),
+    '#size' => 21,
+    '#description' => t('Distance from top of the page ( px ).'),
   );
 
-  $options_font = array('Verdana' => 'Verdana', 'Lucida' => 'Lucida', 'Georgia' => 'Georgia');
+  $options_font = array('Verdana' => 'Verdana', 'Lucida' => 'Lucida',
+      'Georgia' => 'Georgia');
   $form['menu_font'] = array(
-      '#type' => 'select',
-      '#title' => 'Menu Font',
-      '#options' => $options_font,
-      '#default_value' => variable_get('menu_font','Georgia'),
+    '#type' => 'select',
+    '#title' => 'Menu Font',
+    '#options' => $options_font,
+    '#default_value' => variable_get('menu_font', 'Georgia'),
   );
 
   $form['menu_background_color'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Menu Background Color'),
-      '#default_value' => variable_get('menu_background_color','F2F2F2'),
-      '#attributes' => array('class' => array('color')),
-      '#size' => 21,
+    '#type' => 'textfield',
+    '#title' => t('Menu Background Color'),
+    '#default_value' => variable_get('menu_background_color', 'F2F2F2'),
+    '#attributes' => array('class' => array('color')),
+    '#size' => 21,
   );
 
   $form['menu_text_color'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Menu Text Color'),
-      '#default_value' => variable_get('menu_text_color','525A66'),
-      '#attributes' => array('class' => array('color')),
-      '#size' => 21,
+    '#type' => 'textfield',
+    '#title' => t('Menu Text Color'),
+    '#default_value' => variable_get('menu_text_color', '525A66'),
+    '#attributes' => array('class' => array('color')),
+    '#size' => 21,
   );
 
   $form['menu_hover_color'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Menu Hover Color'),
-      '#default_value' => variable_get('menu_hover_color', '7FBFFF'),
-      '#attributes' => array('class' => array('color')),
-      '#size' => 21,
+    '#type' => 'textfield',
+    '#title' => t('Menu Hover Color'),
+    '#default_value' => variable_get('menu_hover_color', '7FBFFF'),
+    '#attributes' => array('class' => array('color')),
+    '#size' => 21,
   );
 
   $form['submenu_text_color'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Submenu Text Color'),
-      '#default_value' => variable_get('submenu_text_color', '525A66'),
-      '#attributes' => array('class' => array('color')),
-      '#size' => 21,
+    '#type' => 'textfield',
+    '#title' => t('Submenu Text Color'),
+    '#default_value' => variable_get('submenu_text_color', '525A66'),
+    '#attributes' => array('class' => array('color')),
+    '#size' => 21,
   );
 
   $form['submenu_hover_color'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Submenu Hover Color'),
-      '#default_value' => variable_get('submenu_hover_color', '7FBFFF'),
-      '#attributes' => array('class' => array('color')),
-      '#size' => 21,
+    '#type' => 'textfield',
+    '#title' => t('Submenu Hover Color'),
+    '#default_value' => variable_get('submenu_hover_color', '7FBFFF'),
+    '#attributes' => array('class' => array('color')),
+    '#size' => 21,
   );
 
   return system_settings_form($form);
@@ -145,10 +146,10 @@ function folder_menu_admin(){
 /**
  * Implements hook_block_info().
  */
-function folder_menu_block_info(){
+function folder_menu_block_info() {
   $blocks['folder_menu'] = array(
-      'info' => t('Folder menu'),
-      'cache' => DRUPAL_CACHE_PER_ROLE,
+    'info' => t('Folder menu'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
   );
   return $blocks;
 }
@@ -156,19 +157,22 @@ function folder_menu_block_info(){
 /**
  * Implements hook_block_view().
  */
-function folder_menu_block_view($delta = 0){
+function folder_menu_block_view($delta = 0) {
 
-  $menuXmlUrl = drupal_get_path('module', 'folder_menu') .'/menu.php';
+  $menu_xml_url = drupal_get_path('module', 'folder_menu') . '/menu.php';
 
-  switch(variable_get('menu_font','Georgia')){
+  switch(variable_get('menu_font','Georgia')) {
     case 'Georgia':
-      $swfUrl = drupal_get_path('module', 'folder_menu') .'/VerticalGeorgia';
+      $swf_url = drupal_get_path('module', 'folder_menu') . '/VerticalGeorgia';
+      
       break;
     case 'Lucida':
-      $swfUrl = drupal_get_path('module', 'folder_menu') .'/VerticalLucida';
+      $swf_url = drupal_get_path('module', 'folder_menu') . '/VerticalLucida';
+      
       break;
     case 'Verdana':
-      $swfUrl = drupal_get_path('module', 'folder_menu') .'/VerticalVerdana';
+      $swf_url = drupal_get_path('module', 'folder_menu') . '/VerticalVerdana';
+      
       break;
   }
   $blocks = array();
@@ -198,7 +202,7 @@ function folder_menu_createFlashDiv($swfUrl, $menuXmlUrl){
         "codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
         "width", "1000",
         "height", "3000",
-        "src", "'.$swfUrl.'",
+        "src", "'.$swf_url.'",
         "quality", "high",
         "pluginspage", "http://www.macromedia.com/go/getflashplayer",
         "align", "left",
@@ -212,9 +216,9 @@ function folder_menu_createFlashDiv($swfUrl, $menuXmlUrl){
         "menu", "true",
         "allowFullScreen", "false",
         "allowScriptAccess","always",
-        "movie", "'.$swfUrl.'",
+        "movie", "'.$swf_url.'",
         "salign", "t",
-        "flashvars", "xmlUrl='.$menuXmlUrl.'"
+        "flashvars", "xmlUrl='.$menu_xml_url.'"
     );
 
     if(typeof(FolderMenuVerticalElem)=="undefined")
