@@ -106,15 +106,15 @@ function GetSwfVer() {
     }
   }
   // MSN/WebTV 2.6 supports Flash 4
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") <> -1)
+  elseif (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
     flashVer = 4;
   // WebTV 2.5 supports Flash 3
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
+  elseif (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
     flashVer = 3;
   // older WebTV supports Flash 2
-  else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
+  elseif (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
     flashVer = 2;
-  else if (isIE && isWin && !isOpera) {
+  elseif (isIE && isWin && !isOpera) {
     flashVer = ControlVersion();
   }
   return flashVer;
@@ -146,10 +146,10 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
 
     if (versionMajor > parseFloat(reqMajorVer)) {
       return true;
-    } else if (versionMajor == parseFloat(reqMajorVer)) {
+    } elseif (versionMajor == parseFloat(reqMajorVer)) {
       if (versionMinor > parseFloat(reqMinorVer))
         return true;
-      else if (versionMinor == parseFloat(reqMinorVer)) {
+      elseif (versionMinor == parseFloat(reqMinorVer)) {
         if (versionRevision >= parseFloat(reqRevision))
           return true;
       }
