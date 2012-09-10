@@ -197,7 +197,7 @@ function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
 
   <script>
 
-  if (typeof(AC_FL_RunContent)=="undefined") {
+  if (typeof(AC_FL_RunContent) == "undefined") {
     alert("This page requires AC_RunActiveContent.js.");
   } else {
     AC_FL_RunContent(
