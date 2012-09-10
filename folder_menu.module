@@ -8,11 +8,11 @@
  * Implements hook_help().
  */
 function folder_menu_help($path, $arg) {
-  switch ($path){
+  switch ($path) {
     case "admin/help#folder_menu":
       $output = '';
-      $output .= '<h3>'.t("Folder Menu module help.").'</h3>';
-      $output .= '<p>'. t("Change Folder Menu settings and set the Folder Menu in Blocks.") .'</p>';
+      $output .= '<h3>' .t("Folder Menu module help."). '</h3>';
+      $output .= '<p>'.t("Change Folder Menu settings and set the Folder Menu in Blocks.").'</p>';
       return $output;
   }
 }
