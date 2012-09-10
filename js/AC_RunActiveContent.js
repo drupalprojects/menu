@@ -159,27 +159,29 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
 }
 
 function AC_AddExtension(src, ext) {
-  if (src.indexOf('?') != -1)
+  if (src.indexOf('?') != -1) {
     return src.replace(/\?/, ext + '?');
-  else
+  }
+  else {
     return src + ext;
+  }
 }
 
 function AC_Generateobj(objAttrs, params, embedAttrs) {
   var str = '';
   if (isIE && isWin && !isOpera) {
     str += '<object ';
-    for ( var i in objAttrs) {
+    for (var i in objAttrs) {
       str += i + '="' + objAttrs[i] + '" ';
     }
     str += '>';
-    for ( var i in params) {
+    for (var i in params) {
       str += '<param name="' + i + '" value="' + params[i] + '" /> ';
     }
     str += '</object>';
   } else {
     str += '<embed ';
-    for ( var i in embedAttrs) {
+    for (var i in embedAttrs) {
       str += i + '="' + embedAttrs[i] + '" ';
     }
     str += '> </embed>';
@@ -206,7 +208,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
   ret.embedAttrs = new Object();
   ret.params = new Object();
   ret.objAttrs = new Object();
-  for ( var i = 0; i < args.length; i = i + 2) {
+  for (var i = 0; i < args.length; i = i + 2) {
     var currArg = args[i].toLowerCase();
 
     switch (currArg) {
@@ -285,7 +287,8 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
     }
   }
   ret.objAttrs["classid"] = classid;
-  if (mimeType)
+  if (mimeType) {
     ret.embedAttrs["type"] = mimeType;
+  }
   return ret;
 }
