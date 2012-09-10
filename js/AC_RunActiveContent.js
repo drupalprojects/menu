@@ -106,24 +106,16 @@ function GetSwfVer() {
     }
   }
   // MSN/WebTV 2.6 supports Flash 4
-  else {
-    if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
-      flashVer = 4;
-    // WebTV 2.5 supports Flash 3
-    else {
-      if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
-        flashVer = 3;
-      // older WebTV supports Flash 2
-      else {
-        if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
-          flashVer = 2;
-        else {
-          if (isIE && isWin && !isOpera) {
-            flashVer = ControlVersion();
-          }
-        }
-      }
-    }
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.6") != -1)
+    flashVer = 4;
+  // WebTV 2.5 supports Flash 3
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv/2.5") != -1)
+    flashVer = 3;
+  // older WebTV supports Flash 2
+  else if (navigator.userAgent.toLowerCase().indexOf("webtv") != -1)
+    flashVer = 2;
+  else if (isIE && isWin && !isOpera) {
+    flashVer = ControlVersion();
   }
   return flashVer;
 }
@@ -145,7 +137,7 @@ function DetectFlashVer(reqMajorVer, reqMinorVer, reqRevision) {
       tempString = tempArray[1];
       // ['2', '0', '0', '11']
       versionArray = tempString.split(",");
-    } else {
+      } else {
       versionArray = versionStr.split(".");
     }
     var versionMajor = versionArray[0];
@@ -177,17 +169,17 @@ function AC_Generateobj(objAttrs, params, embedAttrs) {
   var str = '';
   if (isIE && isWin && !isOpera) {
     str += '<object ';
-    for ( var i in objAttrs) {
+    for (var i in objAttrs) {
       str += i + '="' + objAttrs[i] + '" ';
     }
     str += '>';
-    for ( var i in params) {
+    for (var i in params) {
       str += '<param name="' + i + '" value="' + params[i] + '" /> ';
     }
     str += '</object>';
   } else {
     str += '<embed ';
-    for ( var i in embedAttrs) {
+    for (var i in embedAttrs) {
       str += i + '="' + embedAttrs[i] + '" ';
     }
     str += '> </embed>';
@@ -214,7 +206,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType) {
   ret.embedAttrs = new Object();
   ret.params = new Object();
   ret.objAttrs = new Object();
-  for ( var i = 0; i < args.length; i = i + 2) {
+  for (var i = 0; i < args.length; i = i + 2) {
     var currArg = args[i].toLowerCase();
 
     switch (currArg) {
