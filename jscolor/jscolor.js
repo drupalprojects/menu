@@ -1,6 +1,5 @@
 /**
  * jscolor, JavaScript Color Picker
- * 
  * @version 1.3.9
  * @license GNU Lesser General Public License,
  *          http://www.gnu.org/copyleft/lesser.html
@@ -10,11 +9,14 @@
  * @link http://jscolor.com
  */
 var jscolor = {
-
-  dir : '', // location of jscolor directory (leave empty to autodetect)
-  bindClass : 'color', // class name
-  binding : true, // automatic binding via <input class="...">
-  preloading : true, // use image preloading?
+    // location of jscolor directory (leave empty to autodetect)
+  dir : '',
+  //class name
+  bindClass : 'color',
+  //automatic binding via <input class="...">
+  binding : true,
+  //use image preloading?
+  preloading : true,
 
   install : function() {
     jscolor.addEvent(window, 'load', jscolor.init);
@@ -41,18 +43,18 @@ var jscolor = {
     var base = location.href;
 
     var e = document.getElementsByTagName('base');
-    for ( var i = 0; i < e.length; i += 1) {
+    for (var i = 0; i < e.length; i += 1) {
       if (e[i].href) {
         base = e[i].href;
       }
     }
 
     var e = document.getElementsByTagName('script');
-    for ( var i = 0; i < e.length; i += 1) {
+    for (var i = 0; i < e.length; i += 1) {
       if (e[i].src && /(^|\/)jscolor\.js([?#].*)?$/i.test(e[i].src)) {
         var src = new jscolor.URI(e[i].src);
         var srcAbs = src.toAbsolute(base);
-        srcAbs.path = srcAbs.path.replace(/[^\/]+$/, ''); // remove filename
+        srcAbs.path = srcAbs.path.replace(/[^\/]+$/, '');
         srcAbs.query = null;
         srcAbs.fragment = null;
         return srcAbs.toString();
@@ -62,10 +64,10 @@ var jscolor = {
   },
 
   bind : function() {
-    var matchClass = new RegExp('(^|\\s)(' + jscolor.bindClass
+    var matchClass = new RegExp('(^|\\s)(' + jscolor.bindClass 
         + ')\\s*(\\{[^}]*\\})?', 'i');
     var e = document.getElementsByTagName('input');
-    for ( var i = 0; i < e.length; i += 1) {
+    for (var i = 0; i < e.length; i += 1) {
       var m;
       if (!e[i].color && e[i].className
           && (m = e[i].className.match(matchClass))) {
@@ -82,7 +84,7 @@ var jscolor = {
   },
 
   preload : function() {
-    for ( var fn in jscolor.imgRequire) {
+    for (var fn in jscolor.imgRequire) {
       if (jscolor.imgRequire.hasOwnProperty(fn)) {
         jscolor.loadImage(fn);
       }
@@ -133,8 +135,8 @@ var jscolor = {
     } else if (document.createEventObject) {
       var ev = document.createEventObject();
       el.fireEvent('on' + evnt, ev);
-    } else if (el['on' + evnt]) { // alternatively use the traditional event
-                                  // model (IE5)
+    } else if (el['on' + evnt]) {
+      // model (IE5)
       el['on' + evnt]();
     }
   },
@@ -207,7 +209,7 @@ var jscolor = {
     }
   },
 
-  URI : function(uri) { // See RFC3986
+  URI : function(uri) {
 
     this.scheme = null;
     this.authority = null;
@@ -271,7 +273,7 @@ var jscolor = {
           t.path = removeDotSegments(r.path);
           t.query = r.query;
         } else {
-          if (r.path === '') { // TODO: == or === ?
+          if (r.path === '') {
             t.path = base.path;
             if (r.query !== null) {
               t.query = r.query;
@@ -282,8 +284,8 @@ var jscolor = {
             if (r.path.substr(0, 1) === '/') {
               t.path = removeDotSegments(r.path);
             } else {
-              if (base.authority !== null && base.path === '') { // TODO: == or
-                                                                  // === ?
+              if (base.authority !== null && base.path === '') {
+                // === ?
                 t.path = '/' + r.path;
               } else {
                 t.path = base.path.replace(/[^\/]+$/, '') + r.path;
@@ -334,34 +336,34 @@ var jscolor = {
 
   color : function(target, prop) {
 
-    this.required = true; // refuse empty values?
-    this.adjust = true; // adjust value to uniform notation?
-    this.hash = false; // prefix color with # symbol?
-    this.caps = true; // uppercase?
-    this.slider = true; // show the value/saturation slider?
-    this.valueElement = target; // value holder
-    this.styleElement = target; // where to reflect current color
-    this.hsv = [ 0, 0, 1 ]; // read-only 0-6, 0-1, 0-1
-    this.rgb = [ 1, 1, 1 ]; // read-only 0-1, 0-1, 0-1
+    this.required = true;
+    this.adjust = true;
+    this.hash = false;
+    this.caps = true;
+    this.slider = true;
+    this.valueElement = target;
+    this.styleElement = target;
+    this.hsv = [ 0, 0, 1 ];
+    this.rgb = [ 1, 1, 1 ];
 
-    this.pickerOnfocus = true; // display picker on focus?
-    this.pickerMode = 'HSV'; // HSV | HVS
-    this.pickerPosition = 'bottom'; // left | right | top | bottom
-    this.pickerButtonHeight = 20; // px
+    this.pickerOnfocus = true;
+    this.pickerMode = 'HSV';
+    this.pickerPosition = 'bottom';
+    this.pickerButtonHeight = 20;
     this.pickerClosable = false;
     this.pickerCloseText = 'Close';
-    this.pickerButtonColor = 'ButtonText'; // px
-    this.pickerFace = 10; // px
-    this.pickerFaceColor = 'ThreeDFace'; // CSS color
-    this.pickerBorder = 1; // px
-    this.pickerBorderColor = 'ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight'; // CSS
-                                                                                          // color
-    this.pickerInset = 1; // px
-    this.pickerInsetColor = 'ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow'; // CSS
-                                                                                          // color
+    this.pickerButtonColor = 'ButtonText';
+    this.pickerFace = 10;
+    this.pickerFaceColor = 'ThreeDFace';
+    this.pickerBorder = 1;
+    this.pickerBorderColor = 'ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight';
+    // color
+    this.pickerInset = 1;
+    this.pickerInsetColor = 'ThreeDShadow ThreeDHighlight ThreeDHighlight ThreeDShadow';
+    // color
     this.pickerZIndex = 10000;
 
-    for ( var p in prop) {
+    for (var p in prop) {
       if (prop.hasOwnProperty(p)) {
         this[p] = prop[p];
       }
@@ -375,11 +377,11 @@ var jscolor = {
 
     this.showPicker = function() {
       if (!isPickerOwner()) {
-        var tp = jscolor.getElementPos(target); // target pos
-        var ts = jscolor.getElementSize(target); // target size
-        var vp = jscolor.getViewPos(); // view pos
-        var vs = jscolor.getViewSize(); // view size
-        var ps = getPickerDims(this); // picker size
+        var tp = jscolor.getElementPos(target);
+        var ts = jscolor.getElementSize(target);
+        var vp = jscolor.getViewPos();
+        var vs = jscolor.getViewSize();
+        var ps = getPickerDims(this);
         var a, b, c;
         switch (this.pickerPosition.toLowerCase()) {
         case 'left':
@@ -387,16 +389,19 @@ var jscolor = {
           b = 0;
           c = -1;
           break;
+
         case 'right':
           a = 1;
           b = 0;
           c = 1;
           break;
+
         case 'top':
           a = 0;
           b = 1;
           c = -1;
           break;
+
         default:
           a = 0;
           b = 1;
