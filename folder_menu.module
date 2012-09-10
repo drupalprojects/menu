@@ -188,12 +188,12 @@ function folder_menu_block_view($delta = 0) {
  */
 function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
   global $_addflashonce;
-  $addflashonce=1;
+  $addflashonce = 1;
 
-  drupal_add_js(drupal_get_path('module', 'folder_menu') .'/js/AC_RunActiveContent.js');
-  drupal_add_js(drupal_get_path('module', 'folder_menu') .'/js/functions.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
 
-  return '<div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:'.variable_get('distance_from_top','0').'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
+  return '<div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
 
   <script>
 
@@ -204,7 +204,7 @@ function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
         "codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
         "width", "1000",
         "height", "3000",
-        "src", "'.$swf_url.'",
+        "src", "' . $swf_url . '",
         "quality", "high",
         "pluginspage", "http://www.macromedia.com/go/getflashplayer",
         "align", "left",
@@ -218,9 +218,9 @@ function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
         "menu", "true",
         "allowFullScreen", "false",
         "allowScriptAccess","always",
-        "movie", "'.$swf_url.'",
+        "movie", "' . $swf_url . '",
         "salign", "t",
-        "flashvars", "xmlUrl='.$menu_xml_url.'"
+        "flashvars", "xmlUrl=' . $menu_xml_url . '"
     );
 
     if(typeof(FolderMenuVerticalElem)=="undefined")
