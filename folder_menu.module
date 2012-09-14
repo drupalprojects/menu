@@ -78,16 +78,19 @@ function folder_menu_admin() {
     '#default_value' => variable_get('position', 'fixed'),
     '#options' => array('fixed' => 'Fixed', 'absolute' => 'Absolute'),
   );
-   
+
   $form['distance_from_top'] = array(
     '#type' => 'textfield',
     '#title' => 'Distance from top',
-    '#default_value' => variable_get('distance_from_top','0'),
+    '#default_value' => variable_get('distance_from_top', '0'),
     '#size' => 21,
-    '#description' => t('Distance from top of the page. ( px )'),
+    '#description' => t('Distance from top of the page. (px)'),
   );
 
-  $options_font = array('Verdana' => 'Verdana', 'Lucida' => 'Lucida', 'Georgia' => 'Georgia');
+  $options_font = array(
+      'Verdana' => 'Verdana',
+      'Lucida' => 'Lucida',
+      'Georgia' => 'Georgia');
   $form['menu_font'] = array(
     '#type' => 'select',
     '#title' => 'Menu Font',
