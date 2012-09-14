@@ -3,6 +3,7 @@
  * @file
  * menu.php
  */
+
 chdir('../../../../');
 require_once 'includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
@@ -19,12 +20,14 @@ echo ('<dropdown>
 $menu_type = variable_get('folder_menu_menu_parent', 'primary-links');
 $menus = menu_tree_all_data($menu_type);
 
-foreach($menus as $menu) {
-  $menuLink = $menu['link'];
-  if(strstr($menuLink['link_path'],'http'))
-    echo '<menu cap="'.$menuLink['title'].'" url = "'.$menuLink['link_path'].'" window = "_self">';
-  else
-    echo '<menu cap="'.$menuLink['title'].'" url = "?q='.$menuLink['link_path'].'" window = "_self">';
+foreach ($menus as $menu) {
+  $menulink = $menu['link'];
+  if(strstr($menulink['link_path'], 'http')) {
+    echo '<menu cap="' . $menulink['title'] . '" url = "' . $menulink['link_path'] . '" window = "_self">';
+  }
+  else {
+    echo '<menu cap="' . $menulink['title'] . '" url = "?q=' . $menulink['link_path'] . '" window = "_self">';
+  }
 
   $submenus = $menu['below'];
   if ($submenus != false) {
