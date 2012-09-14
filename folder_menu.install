@@ -84,5 +84,3 @@ function folder_menu_uninstall()
 {
     drupal_uninstall_schema('folder_menu');
 }
-
-?>

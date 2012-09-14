@@ -1,4 +1,3 @@
-; $Id$
 name = Folder Menu
 description = "Folder Menu is a flash dynamic menu module."
 core = 6.x

@@ -1,4 +1,4 @@
-﻿
+
 -----------------------
   OVERVIEW
 ----------------------Folder Menu is a flash dynamic menu module for your Drupal 6.x,7.x website, designed to meet your needs and preferences.

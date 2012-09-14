@@ -154,7 +154,7 @@ function folder_menu_block($op='list', $delta=0) {
 		  case 0:
 			$block_content = '';
 			$block['subject'] = '';
-			$block['content'] = createFlashDiv($swfUrl, $menuXmlUrl);
+			$block['content'] = folder_menu_createFlashDiv($swfUrl, $menuXmlUrl);
 					
 		  break;
 		}
@@ -163,7 +163,7 @@ function folder_menu_block($op='list', $delta=0) {
 }
 
 //Run flash
-function createFlashDiv($swfUrl, $menuXmlUrl) {
+function folder_menu_createFlashDiv($swfUrl, $menuXmlUrl) {
 	global $addflashonce;
 	$addflashonce=1;
 	
@@ -240,5 +240,3 @@ function createFlashDiv($swfUrl, $menuXmlUrl) {
 		</script>';
 
 	}
-	 
-?>
