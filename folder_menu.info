@@ -3,6 +3,3 @@ description = "Folder Menu is a flash dynamic menu module."
 core = 6.x
 package = Navigation
 configure = admin/build/folder_menu
-files[]= folder_menu.module
-files[]=menu.php
-files[]=folder_menu.install
