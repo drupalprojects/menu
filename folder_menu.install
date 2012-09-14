@@ -8,7 +8,19 @@
  * Hook_schema.
  */
 function folder_menu_schema() {
-  $schema['folder_menu'] = array();
+  $schema['folder_menu'] = array(
+
+    'description' => 'The table for Folder menu.',
+    'fields' => array(
+      'fmid' => array(
+        'description' => 'The primary identifier for a folder menu.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('fmid'),
+  );
   return $schema;
 }
 
