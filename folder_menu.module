@@ -5,41 +5,47 @@
  */
 
 /**
- * Folder menu module help
+ * Hook_help.
  */
-function folder_menu_help ($path, $arg) {
+function folder_menu_help($path, $arg) {
   $output = '';
   switch ($path) {
     case "admin/help#folder_menu":
-      $output = '<p>'. t("You can change Folder Menu settings on 'admin/build/folder_menu'. Set the Folder Menu in Blocks.") .'</p>';
+      $output = '<p>' . t("You can change Folder Menu settings on 'admin/build/folder_menu'. Set the Folder Menu in Blocks.") . '</p>';
       break;
   }
   return $output;
 }
 
-//Folder menu module permissions
-function folder_menu_perm(){
-  return array ('access folder_menu administration');
+/**
+ * Hook_perm.
+ */
+function folder_menu_perm() {
+  return array('access folder_menu administration');
 }
 
-//Folder menu module settings
+/**
+ * Hook_menu.
+ */
 function folder_menu_menu() {
   $items = array();
 
   $items['admin/build/folder_menu'] = array(
-      'title' => 'Folder Menu settings',
-      'description' => 'Description of your folder_menu settings page',
-      'page callback' => 'drupal_get_form',
-      'page arguments' => array('folder_menu_admin'),
-      'access arguments' => array('access folder_menu administration'),
-      'type' => MENU_NORMAL_ITEM,
+    'title' => 'Folder Menu settings',
+    'description' => 'Description of your folder_menu settings page',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('folder_menu_admin'),
+    'access arguments' => array('access folder_menu administration'),
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
 
+/**
+ * Hook_admin.
+ */
 function folder_menu_admin() {
-
-  drupal_add_js(drupal_get_path('module', 'folder_menu') .'/jscolor/jscolor.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/jscolor/jscolor.js');
   $form = array();
   $buy = '<table width="95%" rules="none">
   <tr>
@@ -178,7 +184,7 @@ function folder_menu_createFlashDiv($swfUrl, $menuXmlUrl) {
 
 
   return '
-  <div id="foldermenuverticalContainer" onmouseover="onmouseover_vertical();" onmouseout="onmouseout_vertical();" style="position:fixed; left:0px; top:'.variable_get('distance_from_top','0').'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
+  <div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:'.variable_get('distance_from_top','0').'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
 
   <script language="javascript">
 
@@ -209,28 +215,28 @@ AC_FL_RunContent(
 );
 
 if(typeof(FolderMenuVerticalElem)=="undefined")
-initFlash_Moz_vertical();
+folder_menu_initFlash_Moz_vertical();
 else
 initFlash_vertical();
 }
 
-function onmouseover_vertical() {
+function folder_menu_onmouseover_vertical() {
 if(typeof(FolderMenuVerticalObj)!="undefined")	{
 FolderMenuVerticalObj.TOtrigger=true;
 FolderMenuVerticalObj.setHeightAndWidthTO();
 }
 }
 
-function onmouseout_vertical() {
+function folder_menu_onmouseout_vertical() {
 if(typeof(FolderMenuVerticalObj)!="undefined")	{
 FolderMenuVerticalObj.TOtrigger=false;
 }
 }
 
-function initFlash_Moz_vertical() {
+function folder_menu_initFlash_Moz_vertical() {
 if(typeof(document.FolderMenuVerticalElem.getWidth)=="function")
 FolderMenuVerticalObj=new FolderMenuVertical("foldermenuverticalContainer",document.FolderMenuVerticalElem,"FolderMenuVerticalObj", initFlash_Moz_vertical);
-else {setTimeout("initFlash_Moz_vertical()",500);}
+else {setTimeout("folder_menu_initFlash_Moz_vertical()",500);}
 }
 
 function initFlash_vertical()	{
