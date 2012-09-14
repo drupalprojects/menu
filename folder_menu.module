@@ -148,7 +148,7 @@ function folder_menu_block($op='list', $delta=0) {
 
   $menuxmlurl = drupal_get_path('module', 'folder_menu') . '/menu.php';
 
-  switch(variable_get('menu_font', 'Georgia')) {
+  switch (variable_get('menu_font', 'Georgia')) {
     case 'Georgia':
       $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalGeorgia';
       break;
@@ -168,12 +168,12 @@ function folder_menu_block($op='list', $delta=0) {
     $block[0]["content"] = '';
     return $block;
   }
-  else if ($op == 'view') {
+  elseif ($op == 'view') {
     switch ($delta) {
       case 0:
         $block_content = '';
         $block['subject'] = '';
-        $block['content'] = folder_menu_createFlashDiv($swfUrl, $menuXmlUrl);
+        $block['content'] = folder_menu_createFlashDiv($swfurl, $menuxmlurl);
         break;
     }
     return $block;
@@ -183,16 +183,16 @@ function folder_menu_block($op='list', $delta=0) {
 /**
  * Hook__createFlashDiv.
  */
-function folder_menu_createFlashDiv($swfUrl, $menuXmlUrl) {
-  global $addflashonce;
-  $addflashonce=1;
+function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
+  global $_addflashonce;
+  $_addflashonce = 1;
 
-  drupal_add_js(drupal_get_path('module', 'folder_menu') .'/js/AC_RunActiveContent.js');
-  drupal_add_js(drupal_get_path('module', 'folder_menu') .'/js/functions.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
 
 
   return '
-  <div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:'.variable_get('distance_from_top','0').'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:'.variable_get('position', 'fixed').'">
+  <div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:' . variable_get('position', 'fixed') . '">
 
   <script language="javascript">
 
@@ -203,7 +203,7 @@ AC_FL_RunContent(
 "codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
 "width", "1000",
 "height", "3000",
-"src", "'.$swfurl.'",
+"src", "' . $swfurl . '",
 "quality", "high",
 "pluginspage", "http://www.macromedia.com/go/getflashplayer",
 "align", "left",
@@ -217,9 +217,9 @@ AC_FL_RunContent(
 "menu", "true",
 "allowFullScreen", "false",
 "allowScriptAccess","always",
-"movie", "'.$swfurl.'",
+"movie", "' . $swfurl . '",
 "salign", "t",
-"flashvars", "xmlUrl='.$menuxmlurl.'"
+"flashvars", "xmlUrl=' . $menuxmlurl . '"
 );
 
 if(typeof(FolderMenuVerticalElem)=="undefined")
