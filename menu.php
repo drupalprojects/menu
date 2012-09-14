@@ -22,7 +22,7 @@ $menus = menu_tree_all_data($menu_type);
 
 foreach ($menus as $menu) {
   $menulink = $menu['link'];
-  if(strstr($menulink['link_path'], 'http')) {
+  if (strstr($menulink['link_path'], 'http')) {
     echo '<menu cap="' . $menulink['title'] . '" url = "' . $menulink['link_path'] . '" window = "_self">';
   }
   else {
@@ -30,13 +30,15 @@ foreach ($menus as $menu) {
   }
 
   $submenus = $menu['below'];
-  if ($submenus != false) {
+  if ($submenus != FALSE) {
     foreach ($submenus as $submenu) {
-      $submenuLink = $submenu['link'];
-      if(strstr($submenuLink['link_path'],'http'))
-        echo '<submenu cap="'.$submenuLink['title'].'" url = "'.$submenuLink['link_path'].'" window = "_self"></submenu>';
-      else
-        echo '<submenu cap="'.$submenuLink['title'].'" url = "?q='.$submenuLink['link_path'].'" window = "_self"></submenu>';
+      $submenulink = $submenu['link'];
+      if(strstr($submenulink['link_path'], 'http')) {
+        echo '<submenu cap="' . $submenulink['title'] . '" url = "' . $submenulink['link_path'] . '" window = "_self"></submenu>';
+      }
+      else {
+        echo '<submenu cap="' . $submenulink['title'] . '" url = "?q=' . $submenulink['link_path'] . '" window = "_self"></submenu>';
+      }
     }
   }
   echo '</menu>';
