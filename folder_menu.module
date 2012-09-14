@@ -88,20 +88,20 @@ function folder_menu_admin() {
   );
 
   $options_font = array(
-      'Verdana' => 'Verdana',
-      'Lucida' => 'Lucida',
-      'Georgia' => 'Georgia');
+    'Verdana' => 'Verdana',
+    'Lucida' => 'Lucida',
+    'Georgia' => 'Georgia');
   $form['menu_font'] = array(
     '#type' => 'select',
     '#title' => 'Menu Font',
     '#options' => $options_font,
-    '#default_value' => variable_get('menu_font','Georgia'),
+    '#default_value' => variable_get('menu_font', 'Georgia'),
   );
 
   $form['menu_background_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Menu Background Color'),
-    '#default_value' => variable_get('menu_background_color','F2F2F2'),
+    '#default_value' => variable_get('menu_background_color', 'F2F2F2'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
@@ -109,7 +109,7 @@ function folder_menu_admin() {
   $form['menu_text_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Menu Text Color'),
-    '#default_value' => variable_get('menu_text_color','525A66'),
+    '#default_value' => variable_get('menu_text_color', '525A66'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
@@ -146,20 +146,22 @@ function folder_menu_admin() {
  */
 function folder_menu_block($op='list', $delta=0) {
 
-  $menuxmlurl = drupal_get_path('module', 'folder_menu') .'/menu.php';
+  $menuxmlurl = drupal_get_path('module', 'folder_menu') . '/menu.php';
 
-  switch(variable_get('menu_font','Georgia')){
+  switch(variable_get('menu_font', 'Georgia')) {
     case 'Georgia':
-      $swfurl = drupal_get_path('module', 'folder_menu') .'/VerticalGeorgia';
+      $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalGeorgia';
       break;
+
     case 'Lucida':
-      $swfurl = drupal_get_path('module', 'folder_menu') .'/VerticalLucida';
+      $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalLucida';
       break;
+
     case 'Verdana':
-      $swfurl = drupal_get_path('module', 'folder_menu') .'/VerticalVerdana';
+      $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalVerdana';
       break;
   }
-  	
+
   if ($op == "list") {
     $block = array();
     $block[0]["info"] = t('Folder Menu');
@@ -172,7 +174,6 @@ function folder_menu_block($op='list', $delta=0) {
         $block_content = '';
         $block['subject'] = '';
         $block['content'] = folder_menu_createFlashDiv($swfUrl, $menuXmlUrl);
-        	
         break;
     }
     return $block;
