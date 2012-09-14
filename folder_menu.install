@@ -1,6 +1,11 @@
 <?php
 /**
- * hook_schema.
+ * @file
+ * 
+ */
+
+/**
+ * Hook_schema.
  */
 function folder_menu_schema() {
   $schema['folder_menu'] = array(
