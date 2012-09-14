@@ -33,7 +33,7 @@ foreach ($menus as $menu) {
   if ($submenus != FALSE) {
     foreach ($submenus as $submenu) {
       $submenulink = $submenu['link'];
-      if(strstr($submenulink['link_path'], 'http')) {
+      if (strstr($submenulink['link_path'], 'http')) {
         echo '<submenu cap="' . $submenulink['title'] . '" url = "' . $submenulink['link_path'] . '" window = "_self"></submenu>';
       }
       else {
