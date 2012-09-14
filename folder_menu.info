@@ -2,7 +2,6 @@
 name = Folder Menu
 description = "Folder Menu is a flash dynamic menu module."
 core = 6.x
-version = "6.x-1.0"
 package = Navigation
 configure = admin/build/folder_menu
 files[]= folder_menu.module
