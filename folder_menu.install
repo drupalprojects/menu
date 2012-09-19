@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * folder_menu.install
+ */
+
+/**
+ * Implements hook_uninstall.
+ */
+function folder_menu_uninstall() {
+  variable_del('folder_menu_menu_parent');
+  variable_del('position');
+  variable_del('distance_from_top');
+  variable_del('menu_font');
+  variable_del('menu_background_color');
+  variable_del('menu_text_color');
+  variable_del('menu_hover_color');
+  variable_del('submenu_text_color');
+  variable_del('submenu_hover_color');
+}
