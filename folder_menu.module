@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Drupal 7.
+ * Folder menu module for Drupal 7.
  */
 
 /**
@@ -33,9 +33,8 @@ function folder_menu_permission() {
  */
 function folder_menu_menu() {
   $items = array();
-  $items['admin/build/folder_menu'] = array(
-    'title' => 'Folder Menu settings',
-    'description' => 'Description of your folder_menu settings page',
+  $items['admin/settings/folder_menu'] = array(
+    'title' => 'Folder Menu ' . t('settings'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('folder_menu_admin'),
     'access arguments' => array('access folder_menu administration'),
@@ -54,8 +53,8 @@ function folder_menu_admin() {
   <tr>
   <td style="width: 100%; text-align:right;font-size:16px; padding:20px; padding-right:50px; right:0; border:none;">
   <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="color:red; text-decoration:none;">
-  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215"></img><br />
-  Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215"></img><br />' . 
+  t('Get the full version') . '&nbsp;&nbsp;&nbsp;&nbsp;
   </a>
   </td>
   </tr>
@@ -85,10 +84,10 @@ function folder_menu_admin() {
 
   $form['distance_from_top'] = array(
     '#type' => 'textfield',
-    '#title' => 'Distance from top',
+    '#title' => t('Distance from top'),
+    '#description' => t('Distance from top of the page ( px ).'),
     '#default_value' => variable_get('distance_from_top', '0'),
     '#size' => 21,
-    '#description' => t('Distance from top of the page ( px ).'),
   );
 
   $options_font = array(
@@ -97,7 +96,7 @@ function folder_menu_admin() {
     'Georgia' => 'Georgia');
   $form['menu_font'] = array(
     '#type' => 'select',
-    '#title' => 'Menu Font',
+    '#title' => t('Menu Font'),
     '#options' => $options_font,
     '#default_value' => variable_get('menu_font', 'Georgia'),
   );
@@ -184,12 +183,9 @@ function folder_menu_block_view($delta = 0) {
 }
 
 /**
- * Implements hook_createFlashDiv().
+ * function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
-  global $_addflashonce;
-  $addflashonce = 1;
-
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
 
