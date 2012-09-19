@@ -5,7 +5,7 @@
  */
 
 /**
- * Implements hook_help.
+ * Implements hook_help().
  */
 function folder_menu_help($path, $arg) {
   $output = '';
@@ -18,21 +18,21 @@ function folder_menu_help($path, $arg) {
 }
 
 /**
- * Implements hook_perm.
+ * Implements hook_perm().
  */
 function folder_menu_perm() {
   return array('access folder_menu administration');
 }
 
 /**
- * Implements hook_menu.
+ * Implements hook_menu().
  */
 function folder_menu_menu() {
   $items = array();
 
   $items['admin/settings/folder_menu'] = array(
-    'title' => t('Folder Menu settings'),
-    'description' => t('Description of your folder_menu settings page'),
+    'title' => 'Folder Menu settings',
+    'description' => 'Description of your folder_menu settings page',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('folder_menu_admin'),
     'access arguments' => array('access folder_menu administration'),
@@ -42,7 +42,7 @@ function folder_menu_menu() {
 }
 
 /**
- * Implements hook_admin.
+ * Implements hook_admin().
  */
 function folder_menu_admin() {
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/jscolor/jscolor.js');
@@ -51,7 +51,7 @@ function folder_menu_admin() {
   <tr>
   <td style="width: 100%; text-align:right;font-size:16px; padding:20px; padding-right:50px; right:0">
   <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="color:red; text-decoration:none;">
-  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215" /><br />' . 
+  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215" /><br />' .
   t('Get the full version') . '&nbsp;&nbsp;&nbsp;&nbsp;
   </a>
   </td>
@@ -142,7 +142,7 @@ function folder_menu_admin() {
 }
 
 /**
- * Implements hook_block.
+ * Implements hook_block().
  */
 function folder_menu_block($op='list', $delta=0) {
 
@@ -181,7 +181,7 @@ function folder_menu_block($op='list', $delta=0) {
 }
 
 /**
- * function folder_menu_createFlashDiv.
+ * Function folder_menu_createFlashDiv.
  */
 function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
   global $_addflashonce;

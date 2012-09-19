@@ -5,12 +5,12 @@
  */
 
 /**
- * Implements hook_schema.
+ * Implements hook_schema().
  */
 function folder_menu_schema() {
   $schema['folder_menu'] = array(
 
-    'description' => t('The table for Folder menu.'),
+    'description' => 'The table for Folder menu.',
     'fields' => array(
       'fmid' => array(
         'description' => 'The primary identifier for a folder menu.',
@@ -25,14 +25,14 @@ function folder_menu_schema() {
 }
 
 /**
- * Implements hook_install.
+ * Implements hook_install().
  */
 function folder_menu_install() {
   drupal_install_schema('folder_menu');
 }
 
 /**
- * Implements hook_uninstall.
+ * Implements hook_uninstall().
  */
 function folder_menu_uninstall() {
   variable_del('folder_menu_menu_parent');
