@@ -34,7 +34,7 @@ function folder_menu_permission() {
 function folder_menu_menu() {
   $items = array();
   $items['admin/settings/folder_menu'] = array(
-    'title' => 'Folder Menu ' . t('settings'),
+    'title' => 'Folder Menu settings',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('folder_menu_admin'),
     'access arguments' => array('access folder_menu administration'),
@@ -53,7 +53,7 @@ function folder_menu_admin() {
   <tr>
   <td style="width: 100%; text-align:right;font-size:16px; padding:20px; padding-right:50px; right:0; border:none;">
   <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="color:red; text-decoration:none;">
-  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215"></img><br />' . 
+  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215"></img><br />' .
   t('Get the full version') . '&nbsp;&nbsp;&nbsp;&nbsp;
   </a>
   </td>
@@ -183,7 +183,7 @@ function folder_menu_block_view($delta = 0) {
 }
 
 /**
- * function folder_menu_createFlashDiv().
+ * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
