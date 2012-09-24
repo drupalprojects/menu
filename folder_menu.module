@@ -2,7 +2,7 @@
 /**
  * @file
  * This module is flash dynamic menu module for Drupal 6.
- * 
+ *
  * Written by Webdorado team.
  */
 
@@ -39,8 +39,8 @@ function folder_menu_menu() {
   $items = array();
 
   $items['admin/settings/folder_menu'] = array(
-    'title' => t('Folder Menu settings'),
-    'description' => t('Description of your folder_menu settings page'),
+    'title' => 'Folder Menu settings',
+    'description' => 'Description of your folder_menu settings page',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('folder_menu_admin'),
     'access arguments' => array('access folder_menu administration'),
@@ -178,7 +178,7 @@ function folder_menu_block($op='list', $delta=0) {
 }
 
 /**
- * function folder_menu_createFlashDiv().
+ * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
   $path = libraries_get_path('AC_FL_RunContent');

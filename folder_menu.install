@@ -9,7 +9,7 @@
  */
 function folder_menu_schema() {
   $schema['folder_menu'] = array(
-    'description' => t('The table for Folder menu.'),
+    'description' => 'The table for Folder menu.',
     'fields' => array(
       'fmid' => array(
         'description' => 'The primary identifier for a folder menu.',
