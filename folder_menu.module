@@ -1,7 +1,9 @@
 <?php
 /**
  * @file
- * Folder menu module for Drupal 6.
+ * This module is flash dynamic menu module for Drupal 6.
+ * 
+ * Written by Webdorado team.
  */
 
 /**
@@ -11,7 +13,13 @@ function folder_menu_help($path, $arg) {
   $output = '';
   switch ($path) {
     case "admin/help#folder_menu":
-      $output = '<p>' . t("You can change Folder Menu settings on 'admin/settings/folder_menu'. Set the Folder Menu in Blocks.") . '</p>';
+      $output = '<p>' . t("You can change Folder Menu settings on <strong>Administer > Site configuration > Folder Menu settings ('admin/settings/folder_menu')</strong>.<br />
+	  Then you must select Folder Menu block Region on <strong>Administer > Site configuration > Blocks menu ('admin/build/block')</strong>.
+	  ") . '</p>
+    <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="text-decoration:none;">
+    ' . t('You can get the full version') . '<br />
+    <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215" /><br />&nbsp;&nbsp;&nbsp;&nbsp;
+    </a>';
       break;
   }
   return $output;
@@ -31,8 +39,8 @@ function folder_menu_menu() {
   $items = array();
 
   $items['admin/settings/folder_menu'] = array(
-    'title' => 'Folder Menu settings',
-    'description' => 'Description of your folder_menu settings page',
+    'title' => t('Folder Menu settings'),
+    'description' => t('Description of your folder_menu settings page'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('folder_menu_admin'),
     'access arguments' => array('access folder_menu administration'),
@@ -42,47 +50,36 @@ function folder_menu_menu() {
 }
 
 /**
- * Implements hook_admin().
+ * Menu loader callback. Load a Folder Menu settings.
  */
 function folder_menu_admin() {
-  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/jscolor/jscolor.js');
+  $path = libraries_get_path('jscolor');;
+  drupal_add_js($path . '/jscolor.js');
   $form = array();
-  $buy = '<table width="95%" rules="none">
-  <tr>
-  <td style="width: 100%; text-align:right;font-size:16px; padding:20px; padding-right:50px; right:0">
-  <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="color:red; text-decoration:none;">
-  <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215" /><br />' .
-  t('Get the full version') . '&nbsp;&nbsp;&nbsp;&nbsp;
-  </a>
-  </td>
-  </tr>
-  </table>';
+
   $menus = menu_get_menus();
   unset($menus['navigation']);
 
-  $form['buy'] = array(
-    '#value' => $buy,
-  );
-  $form['folder_menu_menu_parent'] = array(
+  $form['folder_menu_parent'] = array(
     '#type' => 'select',
     '#title' => t('Menu Parent'),
     '#description' => t('The menu parent from which to show a Folder menu.'),
-    '#default_value' => variable_get('folder_menu_menu_parent', 'primary-links'),
+    '#default_value' => variable_get('folder_menu_parent', 'primary-links'),
     '#options' => $menus,
   );
 
-  $form['position'] = array(
+  $form['folder_menu_position'] = array(
     '#type' => 'select',
     '#title' => t('Menu Position'),
     '#description' => t('Position can be absolute or fixed'),
-    '#default_value' => variable_get('position', 'fixed'),
+    '#default_value' => variable_get('folder_menu_position', 'fixed'),
     '#options' => array('fixed' => 'Fixed', 'absolute' => 'Absolute'),
   );
 
-  $form['distance_from_top'] = array(
+  $form['folder_menu_distance_from_top'] = array(
     '#type' => 'textfield',
     '#title' => t('Distance from top'),
-    '#default_value' => variable_get('distance_from_top', '0'),
+    '#default_value' => variable_get('folder_menu_distance_from_top', '0'),
     '#size' => 21,
     '#description' => t('Distance from top of the page. (px)'),
   );
@@ -91,49 +88,49 @@ function folder_menu_admin() {
     'Verdana' => 'Verdana',
     'Lucida' => 'Lucida',
     'Georgia' => 'Georgia');
-  $form['menu_font'] = array(
+  $form['folder_menu_font'] = array(
     '#type' => 'select',
     '#title' => t('Menu Font'),
     '#options' => $options_font,
-    '#default_value' => variable_get('menu_font', 'Georgia'),
+    '#default_value' => variable_get('folder_menu_font', 'Georgia'),
   );
 
-  $form['menu_background_color'] = array(
+  $form['folder_menu_background_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Menu Background Color'),
-    '#default_value' => variable_get('menu_background_color', 'F2F2F2'),
+    '#default_value' => variable_get('folder_menu_background_color', 'F2F2F2'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
 
-  $form['menu_text_color'] = array(
+  $form['folder_menu_text_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Menu Text Color'),
-    '#default_value' => variable_get('menu_text_color', '525A66'),
+    '#default_value' => variable_get('folder_menu_text_color', '525A66'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
 
-  $form['menu_hover_color'] = array(
+  $form['folder_menu_hover_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Menu Hover Color'),
-    '#default_value' => variable_get('menu_hover_color', '7FBFFF'),
+    '#default_value' => variable_get('folder_menu_hover_color', '7FBFFF'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
 
-  $form['submenu_text_color'] = array(
+  $form['folder_menu_submenu_text_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Submenu Text Color'),
-    '#default_value' => variable_get('submenu_text_color', '525A66'),
+    '#default_value' => variable_get('folder_menu_submenu_text_color', '525A66'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
 
-  $form['submenu_hover_color'] = array(
+  $form['folder_menu_submenu_hover_color'] = array(
     '#type' => 'textfield',
     '#title' => t('Submenu Hover Color'),
-    '#default_value' => variable_get('submenu_hover_color', '7FBFFF'),
+    '#default_value' => variable_get('folder_menu_submenu_hover_color', '7FBFFF'),
     '#attributes' => array('class' => 'color'),
     '#size' => 21,
   );
@@ -148,7 +145,7 @@ function folder_menu_block($op='list', $delta=0) {
 
   $menuxmlurl = drupal_get_path('module', 'folder_menu') . '/menu.php';
 
-  switch (variable_get('menu_font', 'Georgia')) {
+  switch (variable_get('folder_menu_font', 'Georgia')) {
     case 'Georgia':
       $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalGeorgia';
       break;
@@ -164,7 +161,7 @@ function folder_menu_block($op='list', $delta=0) {
 
   if ($op == "list") {
     $block = array();
-    $block[0]["info"] = t('Folder Menu');
+    $block[0]["info"] = 'Folder Menu';
     $block[0]["content"] = '';
     return $block;
   }
@@ -181,18 +178,14 @@ function folder_menu_block($op='list', $delta=0) {
 }
 
 /**
- * Function folder_menu_createFlashDiv.
+ * function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
-  global $_addflashonce;
-  $_addflashonce = 1;
-
-  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
-  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
-
-
+  $path = libraries_get_path('AC_FL_RunContent');
+  drupal_add_js($path . '/AC_RunActiveContent.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_functions.js');
   return '
-  <div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:' . variable_get('position', 'fixed') . '">
+  <div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('folder_menu_distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:' . variable_get('folder_menu_position', 'fixed') . '">
 
   <script language="javascript">
 
@@ -258,5 +251,4 @@ else {setTimeout("initFlash_vertical()",500);}
 var foldermenuverticalContainerDiv = document.getElementById("foldermenuverticalContainer");
 document.body.appendChild(foldermenuverticalContainerDiv);
 </script>';
-
 }
