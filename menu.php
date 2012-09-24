@@ -7,16 +7,14 @@
 
 $str = getcwd();
 $str = implode("\\", explode("/", $str));
-$count = 0;
 $back_string = '';
 $index = strpos($str, '\\sites\\');
 while (strpos($str, '\\', $index)) {
-  $count++;
   $back_string .= '../';
   $index = strpos($str, '\\', $index) + 1;
 }
 
-chdir ($back_string);
+chdir($back_string);
 require_once 'includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
