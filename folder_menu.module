@@ -13,7 +13,9 @@ function folder_menu_help($path, $arg) {
   $output = '';
   switch ($path) {
     case "admin/help#folder_menu":
-      $output = '<p>' . t("You can change Folder Menu settings on <strong>Administer > Site configuration > Folder Menu settings ('admin/settings/folder_menu')</strong>.<br />
+      $output = '<p>' . t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
+      Download 'AC_FL_RunContent' from <a href='http://download.macromedia.com/pub/developer/activecontent_samples.zip'>http://download.macromedia.com/pub/developer/activecontent_samples.zip</a> library and extract it to sites/all/libraries/AC_FL_RunContent directory.<br />
+      You can change Folder Menu settings on <strong>Administer > Site configuration > Folder Menu settings ('admin/settings/folder_menu')</strong>.<br />
 	  Then you must select Folder Menu block Region on <strong>Administer > Site configuration > Blocks menu ('admin/build/block')</strong>.
 	  ") . '</p>
     <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="text-decoration:none;">
@@ -67,13 +69,18 @@ function folder_menu_admin() {
     '#default_value' => variable_get('folder_menu_parent', 'primary-links'),
     '#options' => $menus,
   );
+  $menu_type = variable_get('folder_menu_parent', 'primary-links');
+  $menus = menu_tree_all_data($menu_type);
+  if (count($menus) > 3) {
+    drupal_set_message(t('To show more than three menus, go to Folder Menu module drupal page.'), 'warning', FALSE);
+  }
 
   $form['folder_menu_position'] = array(
     '#type' => 'select',
     '#title' => t('Menu Position'),
     '#description' => t('Position can be absolute or fixed'),
     '#default_value' => variable_get('folder_menu_position', 'fixed'),
-    '#options' => array('fixed' => 'Fixed', 'absolute' => 'Absolute'),
+    '#options' => array('fixed' => t('Fixed'), 'absolute' => t('Absolute')),
   );
 
   $form['folder_menu_distance_from_top'] = array(
@@ -88,6 +95,7 @@ function folder_menu_admin() {
     'Verdana' => 'Verdana',
     'Lucida' => 'Lucida',
     'Georgia' => 'Georgia');
+
   $form['folder_menu_font'] = array(
     '#type' => 'select',
     '#title' => t('Menu Font'),

@@ -7,11 +7,9 @@
 
 $str = getcwd();
 $str = implode("\\", explode("/", $str));
-$count = 0;
 $back_string = '';
 $index = strpos($str, '\\sites\\');
 while (strpos($str, '\\', $index)) {
-  $count++;
   $back_string .= '../';
   $index = strpos($str, '\\', $index) + 1;
 }
@@ -31,7 +29,9 @@ echo ('<dropdown>
     </settings>');
 $menu_type = variable_get('folder_menu_parent', 'primary-links');
 $menus = menu_tree_all_data($menu_type);
-
+if (count($menus) > 3) {
+  $menus = array_slice($menus, 0, 3);
+}
 foreach ($menus as $menu) {
   $menulink = $menu['link'];
   if (strstr($menulink['link_path'], 'http')) {

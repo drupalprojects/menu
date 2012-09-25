@@ -18,7 +18,13 @@ INSTALLATION
 
 To install Folder Menu module:
 1. Download and enable the module.
-2. Go to Administer > Site configuration > Folder Menu settings.
+2. Download 'jscolor' library form
+'http://jscolor.com/release/jscolor-1.4.0.zip' and
+extract it to sites/all/libraries/jscolor directory.
+3. Download 'AC_FL_RunContent' from
+'http://download.macromedia.com/pub/developer/activecontent_samples.zip'
+library and extract it to sites/all/libraries/AC_FL_RunContent directory.
+4. Go to Administer > Site configuration > Folder Menu settings.
   Menu Parent: Choose the menu parent.
   Menu Position: Choose the position of Folder Menu.
   Distance from top: Define the distance of Folder Menu from the top.
@@ -27,11 +33,11 @@ To install Folder Menu module:
   Menu Text Color: Choose the text color of Folder menu.
   Menu Hover Color: Choose the hover color of Folder menu.
   Submenu Hover Color: Choose the submenu hover color of Folder menu.
-3. On Administer > Site configuration > Blocks menu
+5. On Administer > Site configuration > Blocks menu
 select Folder Menu block Region.
-4. Change Folder Menu module permissions on
+6. Change Folder Menu module permissions on
 Administer > User management > Permissions menu.
-5. You also can find help topics and get Folder Menu module full version on
+7. You also can find help topics and get Folder Menu module full version on
 Administer > Help > Folder Menu menu.
 
 
