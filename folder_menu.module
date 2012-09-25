@@ -44,7 +44,7 @@ function folder_menu_permission() {
 function folder_menu_menu() {
   $items = array();
   $items['admin/settings/folder_menu'] = array(
-    'title' => 'Folder Menu ' . t('settings'),
+    'title' => 'Folder Menu settings',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('folder_menu_admin'),
     'access arguments' => array('access folder_menu administration'),
@@ -54,7 +54,7 @@ function folder_menu_menu() {
 }
 
 /**
- * Implementation of hook_library().
+ * Implements hook_library().
  */
 function folder_menu_library() {
   $libraries = array(
@@ -63,18 +63,18 @@ function folder_menu_library() {
       'version' => '1.3.9',
       'js' => array(
         'sites/all/libraries/jscolor/jscolor.js' => array(
-          'group' => JS_LIBRARY
-        )
-      )
+          'group' => JS_LIBRARY,
+        ),
+      ),
     ),
-	'AC_FL_RunContent' => array(
+    'AC_FL_RunContent' => array(
       'version' => '1.7',
       'js' => array(
         'sites/all/libraries/AC_FL_RunContent/AC_RunActiveContent.js' => array(
-          'group' => JS_LIBRARY
-        )
-      )
-    )
+          'group' => JS_LIBRARY,
+        ),
+      ),
+    ),
   );
 
   return $libraries;
@@ -217,7 +217,6 @@ function folder_menu_block_view($delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
-  //drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/AC_RunActiveContent.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
   drupal_add_library('folder_menu', 'AC_FL_RunContent');
 
