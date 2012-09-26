@@ -14,14 +14,10 @@ function folder_menu_help($path, $arg) {
   switch ($path) {
     case "admin/help#folder_menu":
       $output = '<p>' . t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
-      Download 'AC_FL_RunContent' from <a href='http://download.macromedia.com/pub/developer/activecontent_samples.zip'>http://download.macromedia.com/pub/developer/activecontent_samples.zip</a> library and extract it to sites/all/libraries/AC_FL_RunContent directory.<br />
+      Download 'AC_FL_RunContent' from <a href='http://download.macromedia.com/pub/developer/activecontent_samples.zip'>http://download.macromedia.com/pub/developer/activecontent_samples.zip</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />
       You can change Folder Menu settings on <strong>Administer > Site configuration > Folder Menu settings ('admin/settings/folder_menu')</strong>.<br />
-	  Then you must select Folder Menu block Region on <strong>Administer > Site configuration > Blocks menu ('admin/build/block')</strong>.
-	  ") . '</p>
-    <a href="http://web-dorado.com/files/fromFolderMenuDrupal.php" target="_blank" style="text-decoration:none;">
-    ' . t('You can get the full version') . '<br />
-    <img src="' . drupal_get_path('module', 'folder_menu') . '/header.png" border="0" alt="www.web-dorado.com" width="215" /><br />&nbsp;&nbsp;&nbsp;&nbsp;
-    </a>';
+      Then you must select Folder Menu block Region on <strong>Administer > Site configuration > Blocks menu ('admin/build/block')</strong>.<br /><br />
+      To show more than three menus and five submenus, go to Folder Menu module page on <a href='drupal.org'>Drupal.org</a>.") . '</p>';
       break;
   }
   return $output;
@@ -72,7 +68,7 @@ function folder_menu_admin() {
   $menu_type = variable_get('folder_menu_parent', 'primary-links');
   $menus = menu_tree_all_data($menu_type);
   if (count($menus) > 3) {
-    drupal_set_message(t('To show more than three menus, go to Folder Menu module drupal page.'), 'warning', FALSE);
+    drupal_set_message(t('To show more than three menus and five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
   }
 
   $form['folder_menu_position'] = array(

@@ -23,7 +23,8 @@ To install Folder Menu module:
 extract it to sites/all/libraries/jscolor directory.
 3. Download 'AC_FL_RunContent' from
 'http://download.macromedia.com/pub/developer/activecontent_samples.zip'
-library and extract it to sites/all/libraries/AC_FL_RunContent directory.
+library and copy AC_RunActiveContent.js file to
+sites/all/libraries/AC_FL_RunContent directory.
 4. Go to Administer > Site configuration > Folder Menu settings.
   Menu Parent: Choose the menu parent.
   Menu Position: Choose the position of Folder Menu.
@@ -38,7 +39,8 @@ select Folder Menu block Region.
 6. Change Folder Menu module permissions on
 Administer > User management > Permissions menu.
 7. You also can find help topics and get Folder Menu module full version on
-Administer > Help > Folder Menu menu.
+Administer > Help > Folder Menu menu or visit To show more than three menus
+and five submenus go to Folder Menu module page on 'http://drupal.org//'.
 
 
 AUTHOR INFORMATION
