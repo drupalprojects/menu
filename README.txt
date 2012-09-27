@@ -22,7 +22,7 @@ To install Folder Menu module
 'http://jscolor.com/release/jscolor-1.4.0.zip' and
 extract it to sites/all/libraries/jscolor directory.
 3. Download 'AC_FL_RunContent' from
-'http://download.macromedia.com/pub/developer/activecontent_samples.zip'
+'http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'
 library and copy AC_RunActiveContent.js file to
 sites/all/libraries/AC_FL_RunContent directory.
 4. Go to Administrator > Folder Menu settings
