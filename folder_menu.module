@@ -14,7 +14,7 @@ function folder_menu_help($path, $arg) {
   switch ($path) {
     case "admin/help#folder_menu":
       $output = '<p>' . t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
-      Download 'AC_FL_RunContent' from <a href='http://download.macromedia.com/pub/developer/activecontent_samples.zip'>http://download.macromedia.com/pub/developer/activecontent_samples.zip</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />
+      Download 'AC_FL_RunContent' from <a href='http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'>http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />
       You can change Folder Menu settings on <strong>Administer > Site configuration > Folder Menu settings ('admin/settings/folder_menu')</strong>.<br />
       Then you must select Folder Menu block Region on <strong>Administer > Site configuration > Blocks menu ('admin/build/block')</strong>.<br /><br />
       To show more than three menus and five submenus, go to Folder Menu module page on <a href='drupal.org'>Drupal.org</a>.") . '</p>';
@@ -51,9 +51,13 @@ function folder_menu_menu() {
  * Menu loader callback. Load a Folder Menu settings.
  */
 function folder_menu_admin() {
-  $path = libraries_get_path('jscolor');;
+  $path = 'sites/all/libraries/jscolor';
   drupal_add_js($path . '/jscolor.js');
   $form = array();
+  if (!file_exists("sites/all/libraries/AC_FL_RunContent/AC_RunActiveContent.js") || !file_exists("sites/all/libraries/jscolor/jscolor.js")) {
+     drupal_set_message(t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
+      Download 'AC_FL_RunContent' from <a href='http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'>http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />"), 'error');
+  }
 
   $menus = menu_get_menus();
   unset($menus['navigation']);
@@ -67,10 +71,18 @@ function folder_menu_admin() {
   );
   $menu_type = variable_get('folder_menu_parent', 'primary-links');
   $menus = menu_tree_all_data($menu_type);
-  if (count($menus) > 3) {
-    drupal_set_message(t('To show more than three menus and five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
+  $i = 0;
+  foreach ($menus as $menu) {
+    if ($menu['below']) {
+      $i += count($menu['below']);
+	}
   }
-
+  if ($i > 5) {
+    drupal_set_message(t('To show more than five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
+  }
+  if (count($menus) > 3) {
+    drupal_set_message(t('To show more than three menus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
+  }
   $form['folder_menu_position'] = array(
     '#type' => 'select',
     '#title' => t('Menu Position'),
@@ -185,7 +197,7 @@ function folder_menu_block($op='list', $delta=0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
-  $path = libraries_get_path('AC_FL_RunContent');
+  $path = 'sites/all/libraries/AC_FL_RunContent';
   drupal_add_js($path . '/AC_RunActiveContent.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_functions.js');
   return '
@@ -193,9 +205,7 @@ function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
 
   <script language="javascript">
 
-  if (typeof(AC_FL_RunContent)=="undefined") {
-  alert("This page requires AC_RunActiveContent.js.");
-} else {
+  if (typeof(AC_FL_RunContent)!="undefined") {
 AC_FL_RunContent(
 "codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
 "width", "1000",

@@ -3,4 +3,3 @@ description = "Folder Menu is a flash dynamic menu module."
 core = 6.x
 package = Navigation
 configure = admin/settings/folder_menu
-dependencies[] = libraries
