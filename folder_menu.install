@@ -5,32 +5,6 @@
  */
 
 /**
- * Implements hook_schema().
- */
-function folder_menu_schema() {
-  $schema['folder_menu'] = array(
-    'description' => 'The table for Folder menu.',
-    'fields' => array(
-      'fmid' => array(
-        'description' => 'The primary identifier for a folder menu.',
-        'type' => 'serial',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-      ),
-    ),
-    'primary key' => array('fmid'),
-  );
-  return $schema;
-}
-
-/**
- * Implements hook_install().
- */
-function folder_menu_install() {
-  drupal_install_schema('folder_menu');
-}
-
-/**
  * Implements hook_uninstall().
  */
 function folder_menu_uninstall() {
@@ -43,5 +17,4 @@ function folder_menu_uninstall() {
   variable_del('folder_menu_hover_color');
   variable_del('folder_menu_submenu_text_color');
   variable_del('folder_menu_submenu_hover_color');
-  drupal_uninstall_schema('folder_menu');
 }
