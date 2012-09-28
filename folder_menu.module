@@ -81,7 +81,7 @@ function folder_menu_library() {
 function folder_menu_admin() {
   drupal_add_library('folder_menu', 'jscolor');
   if (!file_exists("sites/all/libraries/AC_FL_RunContent/AC_RunActiveContent.js") || !file_exists("sites/all/libraries/jscolor/jscolor.js")) {
-     drupal_set_message(t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
+    drupal_set_message(t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
       Download 'AC_FL_RunContent' from <a href='http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'>http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />"), 'error');
   }
   $form = array();
@@ -99,7 +99,7 @@ function folder_menu_admin() {
   foreach ($menus_trial as $menu) {
     if ($menu['below']) {
       $i += count($menu['below']);
-	}
+    }
   }
   if ($i > 5) {
     drupal_set_message(t('To show more than five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
