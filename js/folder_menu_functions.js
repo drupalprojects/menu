@@ -3,7 +3,7 @@ function FolderMenuVertical(ContDiv, MenuObj, thisObj) {
     if (this.MenuObj.getWidth() > 990 || this.MenuObj.getHeight() > 2990
         || typeof (this.MenuObj.getHeight()) == 'undefined') {
       setTimeout(thisObj + ".setHeightAndWidth(0)", 500);
-	  return;
+      return;
     }
 
     switch (v) {
