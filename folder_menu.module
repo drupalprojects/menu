@@ -72,7 +72,6 @@ function folder_menu_library() {
       ),
     ),
   );
-
   return $libraries;
 }
 
@@ -97,7 +96,7 @@ function folder_menu_admin() {
   $menu_type = variable_get('folder_menu_parent', 'primary-links');
   $menus_trial = menu_tree_all_data($menu_type);
   $i = 0;
-  foreach ($menus as $menu) {
+  foreach ($menus_trial as $menu) {
     if ($menu['below']) {
       $i += count($menu['below']);
 	}
@@ -223,7 +222,7 @@ function folder_menu_block_view($delta = 0) {
  */
 function folder_menu_createFlashDiv($swf_url, $menu_xml_url) {
   drupal_add_library('folder_menu', 'AC_FL_RunContent');
-  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/functions.js');
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_functions.js');
 
   return '<div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('folder_menu_distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:' . variable_get('folder_menu_position', 'fixed') . '">
 
