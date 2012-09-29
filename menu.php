@@ -46,21 +46,21 @@ foreach ($menus as $menu) {
       }
     }
 
-  $submenus = $menu['below'];
-  if ($submenus != FALSE) {
-    foreach ($submenus as $submenu) {
-      $submenu_link = $submenu['link'];
-      if ($submenu_link['hidden'] == 0) {
-        if (strstr($submenu_link['link_path'], 'http')) {
-          echo '<submenu cap="' . check_plain($submenu_link['title']) . '" url = "' . check_url($submenu_link['link_path']) . '" window = "_self"></submenu>';
-        }
-        else {
-          echo '<submenu cap="' . check_plain($submenu_link['title']) . '" url = "?q=' . check_url($submenu_link['link_path']) . '" window = "_self"></submenu>';
+    $submenus = $menu['below'];
+    if ($submenus != FALSE) {
+      foreach ($submenus as $submenu) {
+        $submenu_link = $submenu['link'];
+        if ($submenu_link['hidden'] == 0) {
+          if (strstr($submenu_link['link_path'], 'http')) {
+            echo '<submenu cap="' . check_plain($submenu_link['title']) . '" url = "' . check_url($submenu_link['link_path']) . '" window = "_self"></submenu>';
+          }
+          else {
+            echo '<submenu cap="' . check_plain($submenu_link['title']) . '" url = "?q=' . check_url($submenu_link['link_path']) . '" window = "_self"></submenu>';
+          }
         }
       }
     }
-  }
-  echo '</menu>';
+    echo '</menu>';
   }
 }
 echo '</dropdown>';
