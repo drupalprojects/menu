@@ -80,7 +80,7 @@ function folder_menu_admin() {
       $menu_count++;
     }
     if ($menu['below']) {
-      foreach ($menu['below'] as $submenu) {     
+      foreach ($menu['below'] as $submenu) {
         if ($submenu['link']['hidden'] == 0) {
           $submenu_count++;
         }
