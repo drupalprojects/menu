@@ -104,7 +104,7 @@ function folder_menu_admin() {
   if ($i > 5) {
     drupal_set_message(t('To show more than five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
   }
-  if (count($menus) > 3) {
+  if (count($menus_trial) > 3) {
     drupal_set_message(t('To show more than three menus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
   }
 
