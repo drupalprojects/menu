@@ -95,17 +95,26 @@ function folder_menu_admin() {
   );
   $menu_type = variable_get('folder_menu_parent', 'primary-links');
   $menus_trial = menu_tree_all_data($menu_type);
-  $i = 0;
+
+  $menu_count = 0;
+  $submenu_count = 0;
   foreach ($menus_trial as $menu) {
+    if ($menu['link']['hidden'] == 0) {
+      $menu_count ++;
+    }
     if ($menu['below']) {
-      $i += count($menu['below']);
+      foreach ($menu['below'] as $submenu) {      
+        if ($submenu['link']['hidden'] == 0) {
+          $submenu_count ++;
+        }
+      }
     }
   }
-  if ($i > 5) {
-    drupal_set_message(t('To show more than five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
-  }
-  if (count($menus_trial) > 3) {
+  if ($menu_count > 3) {
     drupal_set_message(t('To show more than three menus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
+  }
+  if ($submenu_count > 5) {
+    drupal_set_message(t('To show more than five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
   }
 
   $form['folder_menu_position'] = array(
