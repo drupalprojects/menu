@@ -77,12 +77,12 @@ function folder_menu_admin() {
   $submenu_count = 0;
   foreach ($menus_trial as $menu) {
     if ($menu['link']['hidden'] == 0) {
-      $menu_count ++;
+      $menu_count++;
     }
     if ($menu['below']) {
-      foreach ($menu['below'] as $submenu) {      
+      foreach ($menu['below'] as $submenu) {     
         if ($submenu['link']['hidden'] == 0) {
-          $submenu_count ++;
+          $submenu_count++;
         }
       }
     }
