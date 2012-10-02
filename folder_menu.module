@@ -252,7 +252,7 @@ function folder_menu_createFlashDiv() {
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_functions.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_createFlashdiv.js');
   drupal_add_js(array('folder_menu' => array('swf_url' => $swf_url, 'menu_xml_url' => $menu_xml_url)), 'setting');
-  drupal_add_js('create();', array('type' => 'inline', 'scope' => 'footer'));
+  drupal_add_js('folder_menu_createFlash();', array('type' => 'inline', 'scope' => 'footer'));
 
   return '<div id="foldermenuverticalContainer"
               onmouseover="folder_menu_onmouseover_vertical();"

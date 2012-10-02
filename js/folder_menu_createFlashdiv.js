@@ -1,7 +1,7 @@
 /**
  * Return flash div.
  */
-function create() {
+function folder_menu_createFlash() {
   if (typeof(AC_FL_RunContent) != "undefined") {
     AC_FL_RunContent(
         "codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
@@ -33,13 +33,14 @@ function create() {
       initFlash_vertical();
     }
 
-    var flash = document.getElementsByTagName("embed")[0];
+    var flash = document.getElementsByName("FolderMenuVerticalElem")[0];
     var flashContainer = document.getElementById("foldermenuverticalContainer");
     flashContainer.appendChild(flash);
+    document.body.appendChild(flashContainer);
   }
 }
 function initFlash_vertical()	{
-  if(typeof(FolderMenuVerticalElem.getWidth) == "function") {
+  if (typeof(FolderMenuVerticalElem.getWidth) == "function") {
     FolderMenuVerticalObj = new FolderMenuVertical("foldermenuverticalContainer", FolderMenuVerticalElem, "FolderMenuVerticalObj", initFlash_vertical);
   }
   else {
