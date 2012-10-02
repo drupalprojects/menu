@@ -46,7 +46,7 @@ function folder_menu_menu() {
   );
 
   $items['admin/settings/folder_menu/menu_xml'] = array(
-    'page callback' => 'create_menu_xml',
+    'page callback' => 'folder_menu_create_menu_xml',
     'access arguments' => array('access content'),
   );
 
@@ -172,7 +172,6 @@ function folder_menu_admin() {
     drupal_get_messages('status');
     drupal_get_messages('error');
     drupal_set_message(t('Distance from top must bu numeric.'), 'error');
-    
   }
   else {
     drupal_get_messages('error');
@@ -248,10 +247,9 @@ function folder_menu_createFlashDiv() {
 }
 
 /**
- * This function generate xml that contains menus structure and appearance
- * parameters which were set in Drupal module settings page.
+ * This function generate xml that contains menus structure and appearance parameters.
  */
-function create_menu_xml() {
+function folder_menu_create_menu_xml() {
   echo '<dropdown>
     <settings
     menuColor = "0x' . variable_get('folder_menu_background_color', 'F2F2F2') . '"
@@ -261,35 +259,35 @@ function create_menu_xml() {
     subMenuFontGlowColor = "0x' . variable_get('folder_menu_submenu_hover_color', '7FBFFF') . '"
     >
     </settings>';
-$menu_type = variable_get('folder_menu_parent', 'primary-links');
-$menus = menu_tree_all_data($menu_type);
+  $menu_type = variable_get('folder_menu_parent', 'primary-links');
+  $menus = menu_tree_all_data($menu_type);
 
-foreach ($menus as $menu) {
-  $menulink = $menu['link'];
-  if ($menulink['hidden'] == 0) {
-    if (strstr($menulink['link_path'], 'http')) {
-      echo '<menu cap="' . check_plain($menulink['title']) . '" url = "' . check_url($menulink['link_path']) . '" window = "_self">';
-    }
-    else {
-      echo '<menu cap="' . check_plain($menulink['title']) . '" url = "?q=' . check_url($menulink['link_path']) . '" window = "_self">';
-    }
+  foreach ($menus as $menu) {
+    $menulink = $menu['link'];
+    if ($menulink['hidden'] == 0) {
+      if (strstr($menulink['link_path'], 'http')) {
+        echo '<menu cap="' . check_plain($menulink['title']) . '" url = "' . check_url($menulink['link_path']) . '" window = "_self">';
+      }
+      else {
+        echo '<menu cap="' . check_plain($menulink['title']) . '" url = "?q=' . check_url($menulink['link_path']) . '" window = "_self">';
+      }
 
-    $submenus = $menu['below'];
-    if ($submenus != FALSE) {
-      foreach ($submenus as $submenu) {
-        $submenulink = $submenu['link'];
-        if ($submenulink['hidden'] == 0) {
-          if (strstr($submenulink['link_path'], 'http')) {
-            echo '<submenu cap="' . check_plain($submenulink['title']) . '" url = "' . check_url($submenulink['link_path']) . '" window = "_self"></submenu>';
-          }
-          else {
-            echo '<submenu cap="' . check_plain($submenulink['title']) . '" url = "?q=' . check_url($submenulink['link_path']) . '" window = "_self"></submenu>';
+      $submenus = $menu['below'];
+      if ($submenus != FALSE) {
+        foreach ($submenus as $submenu) {
+          $submenulink = $submenu['link'];
+          if ($submenulink['hidden'] == 0) {
+            if (strstr($submenulink['link_path'], 'http')) {
+              echo '<submenu cap="' . check_plain($submenulink['title']) . '" url = "' . check_url($submenulink['link_path']) . '" window = "_self"></submenu>';
+            }
+            else {
+              echo '<submenu cap="' . check_plain($submenulink['title']) . '" url = "?q=' . check_url($submenulink['link_path']) . '" window = "_self"></submenu>';
+            }
           }
         }
       }
+      echo '</menu>';
     }
-    echo '</menu>';
   }
-}
-echo '</dropdown>';
+  echo '</dropdown>';
 }
