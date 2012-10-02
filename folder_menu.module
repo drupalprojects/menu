@@ -206,11 +206,12 @@ function folder_menu_block($op = 'list', $delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv() {
-  if (!strstr($_SERVER['QUERY_STRING'], 'q=') && !strstr($_SERVER['HTTP_REFERER'], 'q=')) {
-    $menuxmlurl = 'admin/settings/folder_menu/menu_xml';
+  $head_search = @get_headers($GLOBALS['base_url'] . 'admin/settings/folder_menu/menu_xml');
+  if (strpos($head_search[0], '404 Not Found')) {
+    $menuxmlurl = '?q=admin/settings/folder_menu/menu_xml';
   }
   else {
-    $menuxmlurl = '?q=admin/settings/folder_menu/menu_xml';
+    $menuxmlurl = 'admin/settings/folder_menu/menu_xml';
   }
   switch (variable_get('folder_menu_font', 'Georgia')) {
     case 'Georgia':
