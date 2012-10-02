@@ -227,11 +227,12 @@ function folder_menu_block_view($delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv() {
-  if (!strstr($_SERVER['QUERY_STRING'], 'q=') && !strstr($_SERVER['HTTP_REFERER'], 'q=')) {
-    $menu_xml_url = 'admin/settings/folder_menu/menu_xml';
+  $head_search = @get_headers($GLOBALS['base_url'] . 'admin/settings/folder_menu/menu_xml');
+  if (strpos($head_search[0], '404 Not Found')) {
+    $menu_xml_url = '?q=admin/settings/folder_menu/menu_xml';
   }
   else {
-    $menu_xml_url = '?q=admin/settings/folder_menu/menu_xml';
+    $menu_xml_url = 'admin/settings/folder_menu/menu_xml';
   }
   switch (variable_get('folder_menu_font', 'Georgia')) {
     case 'Georgia':
