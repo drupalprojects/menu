@@ -44,6 +44,12 @@ function folder_menu_menu() {
     'access arguments' => array('access folder_menu administration'),
     'type' => MENU_NORMAL_ITEM,
   );
+
+  $items['admin/settings/folder_menu/menu_xml'] = array(
+    'page callback' => 'create_menu_xml',
+    'access arguments' => array('access content'),
+  );
+
   return $items;
 }
 
@@ -162,16 +168,51 @@ function folder_menu_admin() {
     '#size' => 21,
   );
 
+  if (!is_numeric(variable_get('folder_menu_distance_from_top', '0'))) {
+    drupal_get_messages('status');
+    drupal_get_messages('error');
+    drupal_set_message(t('Distance from top must bu numeric.'), 'error');
+    
+  }
+  else {
+    drupal_get_messages('error');
+  }
+
   return system_settings_form($form);
 }
 
 /**
  * Implements hook_block().
  */
-function folder_menu_block($op='list', $delta=0) {
+function folder_menu_block($op = 'list', $delta = 0) {
+  if ($op == "list") {
+    $block = array();
+    $block[0]["info"] = 'Folder Menu';
+    $block[0]["content"] = '';
+    return $block;
+  }
+  elseif ($op == 'view') {
+    switch ($delta) {
+      case 0:
+        $block_content = '';
+        $block['subject'] = '';
+        $block['content'] = folder_menu_createFlashDiv();
+        break;
+    }
+    return $block;
+  }
+}
 
-  $menuxmlurl = drupal_get_path('module', 'folder_menu') . '/menu.php';
-
+/**
+ * Function folder_menu_createFlashDiv().
+ */
+function folder_menu_createFlashDiv() {
+  if (!strstr($_SERVER['QUERY_STRING'], 'q=') && !strstr($_SERVER['HTTP_REFERER'], 'q=')) {
+    $menuxmlurl = 'admin/settings/folder_menu/menu_xml';
+  }
+  else {
+    $menuxmlurl = '?q=admin/settings/folder_menu/menu_xml';
+  }
   switch (variable_get('folder_menu_font', 'Georgia')) {
     case 'Georgia':
       $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalGeorgia';
@@ -186,94 +227,69 @@ function folder_menu_block($op='list', $delta=0) {
       break;
   }
 
-  if ($op == "list") {
-    $block = array();
-    $block[0]["info"] = 'Folder Menu';
-    $block[0]["content"] = '';
-    return $block;
-  }
-  elseif ($op == 'view') {
-    switch ($delta) {
-      case 0:
-        $block_content = '';
-        $block['subject'] = '';
-        $block['content'] = folder_menu_createFlashDiv($swfurl, $menuxmlurl);
-        break;
-    }
-    return $block;
-  }
-}
-
-/**
- * Function folder_menu_createFlashDiv().
- */
-function folder_menu_createFlashDiv($swfurl, $menuxmlurl) {
   $path = 'sites/all/libraries/AC_FL_RunContent';
   drupal_add_js($path . '/AC_RunActiveContent.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_functions.js');
-  return '
-  <div id="foldermenuverticalContainer" onmouseover="folder_menu_onmouseover_vertical();" onmouseout="folder_menu_onmouseout_vertical();" style="position:fixed; left:0px; top:' . variable_get('folder_menu_distance_from_top', '0') . 'px; overflow:hidden; width:50px; height:1500px; z-index:10000; position:' . variable_get('folder_menu_position', 'fixed') . '">
-
-  <script language="javascript">
-
-  if (typeof(AC_FL_RunContent)!="undefined") {
-AC_FL_RunContent(
-"codebase", "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0",
-"width", "1000",
-"height", "3000",
-"src", "' . $swfurl . '",
-"quality", "high",
-"pluginspage", "http://www.macromedia.com/go/getflashplayer",
-"align", "left",
-"play", "true",
-"loop", "true",
-"scale", "showall",
-"wmode", "transparent",
-"devicefont", "false",
-"id", "FolderMenuVerticalElem",
-"name", "FolderMenuVerticalElem",
-"menu", "true",
-"allowFullScreen", "false",
-"allowScriptAccess","always",
-"movie", "' . $swfurl . '",
-"salign", "t",
-"flashvars", "xmlUrl=' . $menuxmlurl . '"
-);
-
-if(typeof(FolderMenuVerticalElem)=="undefined")
-folder_menu_initFlash_Moz_vertical();
-else
-initFlash_vertical();
+  drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_createFlashdiv.js');
+  drupal_add_js(array('folder_menu' => array('swf_url' => $swfurl, 'menu_xml_url' => $menuxmlurl)), 'setting');
+  drupal_add_js('folder_menu_createFlash();', 'inline', 'footer');
+  return '<div id="foldermenuverticalContainer"
+              onmouseover="folder_menu_onmouseover_vertical();"
+              onmouseout="folder_menu_onmouseout_vertical();"
+              style=" left:0px;
+                      top:' . check_plain(variable_get('folder_menu_distance_from_top', '0')) . 'px;
+                      overflow:hidden;
+                      width:50px;
+                      height:1500px;
+                      z-index:10000;
+                      position:' . variable_get('folder_menu_position', 'fixed') . '
+                      ">
+          </div>';
 }
 
-function folder_menu_onmouseover_vertical() {
-if(typeof(FolderMenuVerticalObj)!="undefined")	{
-FolderMenuVerticalObj.TOtrigger=true;
-FolderMenuVerticalObj.setHeightAndWidthTO();
-}
-}
+/**
+ * This function generate xml that contains menus structure and appearance
+ * parameters which were set in Drupal module settings page.
+ */
+function create_menu_xml() {
+  echo '<dropdown>
+    <settings
+    menuColor = "0x' . variable_get('folder_menu_background_color', 'F2F2F2') . '"
+    menuFontColor = "0x' . variable_get('folder_menu_text_color', '525A66') . '"
+    menuFontGlowColor = "0x' . variable_get('folder_menu_hover_color', '7FBFFF') . '"
+    subMenuFontColor = "0x' . variable_get('folder_menu_submenu_text_color', '525A66') . '"
+    subMenuFontGlowColor = "0x' . variable_get('folder_menu_submenu_hover_color', '7FBFFF') . '"
+    >
+    </settings>';
+$menu_type = variable_get('folder_menu_parent', 'primary-links');
+$menus = menu_tree_all_data($menu_type);
 
-function folder_menu_onmouseout_vertical() {
-if(typeof(FolderMenuVerticalObj)!="undefined")	{
-FolderMenuVerticalObj.TOtrigger=false;
-}
-}
+foreach ($menus as $menu) {
+  $menulink = $menu['link'];
+  if ($menulink['hidden'] == 0) {
+    if (strstr($menulink['link_path'], 'http')) {
+      echo '<menu cap="' . check_plain($menulink['title']) . '" url = "' . check_url($menulink['link_path']) . '" window = "_self">';
+    }
+    else {
+      echo '<menu cap="' . check_plain($menulink['title']) . '" url = "?q=' . check_url($menulink['link_path']) . '" window = "_self">';
+    }
 
-function folder_menu_initFlash_Moz_vertical() {
-if(typeof(document.FolderMenuVerticalElem.getWidth)=="function")
-FolderMenuVerticalObj=new FolderMenuVertical("foldermenuverticalContainer",document.FolderMenuVerticalElem,"FolderMenuVerticalObj", initFlash_Moz_vertical);
-else {setTimeout("folder_menu_initFlash_Moz_vertical()",500);}
+    $submenus = $menu['below'];
+    if ($submenus != FALSE) {
+      foreach ($submenus as $submenu) {
+        $submenulink = $submenu['link'];
+        if ($submenulink['hidden'] == 0) {
+          if (strstr($submenulink['link_path'], 'http')) {
+            echo '<submenu cap="' . check_plain($submenulink['title']) . '" url = "' . check_url($submenulink['link_path']) . '" window = "_self"></submenu>';
+          }
+          else {
+            echo '<submenu cap="' . check_plain($submenulink['title']) . '" url = "?q=' . check_url($submenulink['link_path']) . '" window = "_self"></submenu>';
+          }
+        }
+      }
+    }
+    echo '</menu>';
+  }
 }
-
-function initFlash_vertical()	{
-if(typeof(FolderMenuVerticalElem.getWidth)=="function")
-FolderMenuVerticalObj=new FolderMenuVertical("foldermenuverticalContainer",FolderMenuVerticalElem,"FolderMenuVerticalObj", initFlash_vertical);
-else {setTimeout("initFlash_vertical()",500);}
-}
-</script>
-</div>
-<script language="javascript">
-var foldermenuverticalContainerDiv = document.getElementById("foldermenuverticalContainer");
-document.body.appendChild(foldermenuverticalContainerDiv);
-</script>';
+echo '</dropdown>';
 }
