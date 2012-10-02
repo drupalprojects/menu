@@ -33,9 +33,10 @@ function folder_menu_createFlash() {
       initFlash_vertical();
     }
 
-    var flash = document.getElementsByTagName("embed")[0];
+    var flash = document.getElementsByName("FolderMenuVerticalElem")[0];
     var flashContainer = document.getElementById("foldermenuverticalContainer");
     flashContainer.appendChild(flash);
+    document.body.appendChild(flashContainer);
   }
 }
 function initFlash_vertical()	{
