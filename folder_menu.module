@@ -247,7 +247,7 @@ function folder_menu_createFlashDiv() {
 }
 
 /**
- * This function generate xml that contains menus structure and appearance parameters.
+ * This function generate xml.
  */
 function folder_menu_create_menu_xml() {
   echo '<dropdown>
