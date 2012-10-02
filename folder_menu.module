@@ -194,14 +194,12 @@ function folder_menu_admin() {
     drupal_get_messages('status');
     drupal_get_messages('error');
     drupal_set_message(t('Distance from top must bu numeric.'), 'error');
-    
   }
   else {
     drupal_get_messages('error');
   }
 
   return system_settings_form($form);
-  
 }
 
 /**
@@ -229,7 +227,7 @@ function folder_menu_block_view($delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv() {
-  if (!strstr($_SERVER['QUERY_STRING'], 'q=') ) {
+  if (!strstr($_SERVER['QUERY_STRING'], 'q=') && !strstr($_SERVER['HTTP_REFERER'], 'q=')) {
     $menu_xml_url = 'admin/settings/folder_menu/menu_xml';
   }
   else {
