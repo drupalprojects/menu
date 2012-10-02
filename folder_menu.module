@@ -228,7 +228,7 @@ function folder_menu_block_view($delta = 0) {
  */
 function folder_menu_createFlashDiv() {
   $head_search = @get_headers($GLOBALS['base_url'] . 'admin/settings/folder_menu/menu_xml');
-  if (strpos($head_search[0], '404 Not Found')) {
+  if (strpos($head_search[0], '404 Not Found') || strpos($head_search[0], '500 Internal Server Error')) {
     $menu_xml_url = '?q=admin/settings/folder_menu/menu_xml';
   }
   else {
