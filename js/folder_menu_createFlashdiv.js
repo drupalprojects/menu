@@ -30,7 +30,7 @@ function folder_menu_createFlash() {
       folder_menu_initFlash_Moz_vertical();
     }
     else {
-      initFlash_vertical();
+      folder_menu_initFlash_vertical();
     }
 
     var flash = document.getElementsByName("FolderMenuVerticalElem")[0];
@@ -39,12 +39,12 @@ function folder_menu_createFlash() {
     document.body.appendChild(flashContainer);
   }
 }
-function initFlash_vertical()	{
+function folder_menu_initFlash_vertical()	{
   if(typeof(FolderMenuVerticalElem.getWidth) == "function") {
-    FolderMenuVerticalObj = new FolderMenuVertical("foldermenuverticalContainer", FolderMenuVerticalElem, "FolderMenuVerticalObj", initFlash_vertical);
+    FolderMenuVerticalObj = new FolderMenuVertical("foldermenuverticalContainer", FolderMenuVerticalElem, "FolderMenuVerticalObj", folder_menu_initFlash_vertical);
   }
   else {
-    setTimeout("initFlash_vertical()",500);
+    setTimeout("folder_menu_initFlash_vertical()",500);
   }
 }
 

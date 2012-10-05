@@ -251,8 +251,8 @@ function folder_menu_createFlashDiv() {
  * This function generate xml.
  */
 function folder_menu_create_menu_xml() {
-  echo '
-    <?xml version="1.0" encoding="UTF-8"?>
+  header("Content-Type:text/xml");
+  echo '<?xml version="1.0" encoding="UTF-8"?>
     <dropdown>
     <settings
     menuColor = "0x' . variable_get('folder_menu_background_color', 'F2F2F2') . '"
