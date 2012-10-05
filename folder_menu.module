@@ -45,7 +45,7 @@ function folder_menu_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
-  $items['admin/settings/folder_menu/menu_xml'] = array(
+  $items['folder_menu/menu_xml'] = array(
     'page callback' => 'folder_menu_create_menu_xml',
     'access arguments' => array('access content'),
   );
@@ -54,7 +54,7 @@ function folder_menu_menu() {
 }
 
 /**
- * Menu loader callback. Load a Folder Menu settings.
+ * Menu callback. Load a Folder Menu settings.
  */
 function folder_menu_admin() {
   $path = 'sites/all/libraries/jscolor';
@@ -171,7 +171,7 @@ function folder_menu_admin() {
   if (!is_numeric(variable_get('folder_menu_distance_from_top', '0'))) {
     drupal_get_messages('status');
     drupal_get_messages('error');
-    drupal_set_message(t('Distance from top must bu numeric.'), 'error');
+    drupal_set_message(t('Distance from top must be numeric.'), 'error');
   }
   else {
     drupal_get_messages('error');
@@ -206,12 +206,12 @@ function folder_menu_block($op = 'list', $delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv() {
-  $head_search = @get_headers($GLOBALS['base_url'] . 'admin/settings/folder_menu/menu_xml');
+  $head_search = @get_headers($GLOBALS['base_url'] . 'folder_menu/menu_xml');
   if (strpos($head_search[0], '404 Not Found') || strpos($head_search[0], '500 Internal Server Error')) {
-    $menuxmlurl = '?q=admin/settings/folder_menu/menu_xml';
+    $menuxmlurl = '?q=folder_menu/menu_xml';
   }
   else {
-    $menuxmlurl = 'admin/settings/folder_menu/menu_xml';
+    $menuxmlurl = 'folder_menu/menu_xml';
   }
   switch (variable_get('folder_menu_font', 'Georgia')) {
     case 'Georgia':
@@ -251,7 +251,9 @@ function folder_menu_createFlashDiv() {
  * This function generate xml.
  */
 function folder_menu_create_menu_xml() {
-  echo '<dropdown>
+  echo '
+    <?xml version="1.0" encoding="UTF-8"?>
+    <dropdown>
     <settings
     menuColor = "0x' . variable_get('folder_menu_background_color', 'F2F2F2') . '"
     menuFontColor = "0x' . variable_get('folder_menu_text_color', '525A66') . '"
