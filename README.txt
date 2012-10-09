@@ -40,7 +40,7 @@ select Folder Menu block Region.
 Administer > User management > Permissions menu.
 7. You also can find help topics and get Folder Menu module full version on
 Administer > Help > Folder Menu menu or visit To show more than three menus
-and five submenus go to Folder Menu module page on 'http://drupal.org//'.
+and five submenus go to Folder Menu module page on 'http://drupal.org/project/menu'.
 
 
 AUTHOR INFORMATION

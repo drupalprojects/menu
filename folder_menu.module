@@ -17,7 +17,7 @@ function folder_menu_help($path, $arg) {
       Download 'AC_FL_RunContent' from <a href='http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'>http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />
       You can change Folder Menu settings on <strong>Administer > Site configuration > Folder Menu settings ('admin/settings/folder_menu')</strong>.<br />
       Then you must select Folder Menu block Region on <strong>Administer > Site configuration > Blocks menu ('admin/build/block')</strong>.<br /><br />
-      To show more than three menus and five submenus, go to Folder Menu module page on <a href='drupal.org'>Drupal.org</a>.") . '</p>';
+      To show more than three menus and five submenus, go to <a href='http://drupal.org/project/menu'>Folder Menu module page on Drupal.org</a>.") . '</p>';
       break;
   }
   return $output;
@@ -94,10 +94,10 @@ function folder_menu_admin() {
     }
   }
   if ($menu_count > 3) {
-    drupal_set_message(t('To show more than three menus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
+    drupal_set_message(t("To show more than three menus, go to <a href='http://drupal.org/project/menu'>Folder Menu module page on Drupal.org</a>."), 'warning', FALSE);
   }
   if ($submenu_count > 5) {
-    drupal_set_message(t('To show more than five submenus, go to Folder Menu module page on <a href="http://drupal.org">Drupal.org</a>.'), 'warning', FALSE);
+    drupal_set_message(t("To show more than five submenus, go to <a href='http://drupal.org/project/menu'>Folder Menu module page on Drupal.org</a>."), 'warning', FALSE);
   }
 
   $form['folder_menu_position'] = array(
@@ -206,7 +206,7 @@ function folder_menu_block($op = 'list', $delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv() {
-  $head_search = @get_headers($GLOBALS['base_url'] . 'folder_menu/menu_xml');
+  $head_search = @get_headers($GLOBALS['base_url'] . '/folder_menu/menu_xml');
   if (strpos($head_search[0], '404 Not Found') || strpos($head_search[0], '500 Internal Server Error')) {
     $menuxmlurl = '?q=folder_menu/menu_xml';
   }
