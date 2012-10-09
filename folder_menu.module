@@ -62,7 +62,7 @@ function folder_menu_admin() {
   $form = array();
   if (!file_exists("sites/all/libraries/AC_FL_RunContent/AC_RunActiveContent.js") || !file_exists("sites/all/libraries/jscolor/jscolor.js")) {
     drupal_set_message(t("Download 'jscolor' library from <a href='http://jscolor.com/release/jscolor-1.4.0.zip'>http://jscolor.com/release/jscolor-1.4.0.zip</a> and extract it to sites/all/libraries/jscolor directory.<br />
-      Download 'AC_FL_RunContent' from <a href='http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'>http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />"), 'error');
+      Download 'AC_FL_RunContent' from <a href='http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file'>http://allencrosticrealty.com/AC-RunActiveContent.js/at_download/file</a> library and copy AC_RunActiveContent.js file to sites/all/libraries/AC_FL_RunContent directory.<br />"), 'warning');
   }
 
   $menus = menu_get_menus();
