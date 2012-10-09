@@ -38,8 +38,10 @@ sites/all/libraries/AC_FL_RunContent directory.
 select Folder Menu block Region.
 6. Change Folder Menu module permissions on
 Administer > People > Permissions menu.
-7. You also can find help topics and get Folder Menu module full version on
-Administer > Help > Folder Menu menu or visit To show more than three menus
+7. You also can find help topics and get Folder Menu module full version on 
+Administer > Help > Folder Menu menu or visit http://web-dorado.com/products/drupal-menu-vertical.html
+
+To show more than three menus
 and five submenus go to Folder Menu module page on 'http://drupal.org/project/menu'.
 
 
