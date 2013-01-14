@@ -206,13 +206,7 @@ function folder_menu_block($op = 'list', $delta = 0) {
  * Function folder_menu_createFlashDiv().
  */
 function folder_menu_createFlashDiv() {
-  $head_search = @get_headers($GLOBALS['base_url'] . '/folder_menu/menu_xml');
-  if (strpos($head_search[0], '404 Not Found') || strpos($head_search[0], '500 Internal Server Error')) {
-    $menuxmlurl = '?q=folder_menu/menu_xml';
-  }
-  else {
-    $menuxmlurl = 'folder_menu/menu_xml';
-  }
+  $menuxmlurl = url('folder_menu/menu_xml', array('absolute' => TRUE));
   switch (variable_get('folder_menu_font', 'Georgia')) {
     case 'Georgia':
       $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalGeorgia';
@@ -226,7 +220,7 @@ function folder_menu_createFlashDiv() {
       $swfurl = drupal_get_path('module', 'folder_menu') . '/VerticalVerdana';
       break;
   }
-
+  $swfurl = base_path() . $swfurl;
   $path = 'sites/all/libraries/AC_FL_RunContent';
   drupal_add_js($path . '/AC_RunActiveContent.js');
   drupal_add_js(drupal_get_path('module', 'folder_menu') . '/js/folder_menu_functions.js');
